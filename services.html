@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Services - Excell Mining & Construction Services</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+            background-color: #f8f9fa;
+        }
+
+        /* Navigation */
+        nav {
+            background: #1a1a2e;
+            padding: 1.2rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #00a8cc;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: all 0.3s;
+        }
+
+        .logo:hover {
+            color: #ffd700;
+            transform: scale(1.05);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            font-size: 0.95rem;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: #00a8cc;
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #00a8cc;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a.active {
+            color: #00a8cc;
+        }
+
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            padding: 160px 2rem 80px;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><rect width="2" height="2" fill="white" opacity="0.1"/></svg>');
+            opacity: 0.3;
+        }
+
+        .page-header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .page-header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            font-weight: 800;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            color: #00a8cc;
+        }
+
+        .page-header p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.8;
+            color: #e0e0e0;
+        }
+
+        /* Breadcrumb */
+        .breadcrumb {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            background: transparent;
+        }
+
+        .breadcrumb a {
+            color: #00a8cc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .breadcrumb a:hover {
+            color: #ffd700;
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            color: #1a1a2e;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 80px;
+            height: 3px;
+            background: #00a8cc;
+        }
+
+        .section-title.center {
+            text-align: center;
+        }
+
+        .section-title.center::after {
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .section-subtitle {
+            color: #666;
+            font-size: 1.1rem;
+            margin-bottom: 3rem;
+            max-width: 800px;
+        }
+
+        .section-subtitle.center {
+            text-align: center;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Services Overview */
+        .services-overview {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .service-overview-card {
+            background: white;
+            padding: 2.5rem 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border-top: 4px solid #00a8cc;
+            transition: all 0.3s;
+            text-align: center;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .service-overview-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+
+        .service-icon {
+            font-size: 3.5rem;
+            color: #00a8cc;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-overview-card h3 {
+            color: #1a1a2e;
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+        }
+
+        .service-overview-card p {
+            color: #666;
+            line-height: 1.7;
+            flex-grow: 1;
+        }
+
+        .service-link {
+            display: inline-block;
+            margin-top: 1.5rem;
+            color: #00a8cc;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .service-link:hover {
+            color: #ffd700;
+            transform: translateX(5px);
+        }
+
+        /* Detailed Services Section */
+        .detailed-services {
+            background: #f5f5f5;
+        }
+
+        .service-detail-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            margin-bottom: 3rem;
+            transition: all 0.3s;
+        }
+
+        .service-detail-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+
+        .service-detail-header {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: white;
+            padding: 2rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .service-detail-icon {
+            font-size: 3rem;
+            margin-right: 1.5rem;
+            color: #00a8cc;
+        }
+
+        .service-detail-title h3 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+            color: #00a8cc;
+        }
+
+        .service-detail-title p {
+            color: #e0e0e0;
+            font-size: 1.1rem;
+        }
+
+        .service-detail-content {
+            padding: 2.5rem;
+        }
+
+        .service-detail-content h4 {
+            color: #1a1a2e;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+            border-left: 3px solid #00a8cc;
+            padding-left: 1rem;
+        }
+
+        .service-detail-content p {
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+            color: #555;
+        }
+
+        .service-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .service-feature {
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .feature-icon {
+            color: #00a8cc;
+            margin-right: 1rem;
+            font-size: 1.2rem;
+            margin-top: 0.2rem;
+        }
+
+        .feature-text h5 {
+            color: #1a1a2e;
+            margin-bottom: 0.3rem;
+            font-size: 1.1rem;
+        }
+
+        .feature-text p {
+            color: #666;
+            font-size: 0.95rem;
+            margin-bottom: 0;
+        }
+
+        /* Process Section */
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .process-step {
+            background: white;
+            padding: 2.5rem 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            text-align: center;
+            transition: all 0.3s;
+            position: relative;
+            border-top: 4px solid #00a8cc;
+        }
+
+        .process-step:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .step-number {
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 40px;
+            background: #00a8cc;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .step-icon {
+            font-size: 3rem;
+            color: #00a8cc;
+            margin-bottom: 1.5rem;
+        }
+
+        .process-step h3 {
+            color: #1a1a2e;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .process-step p {
+            color: #666;
+            line-height: 1.7;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: white;
+            text-align: center;
+            padding: 80px 0;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #00a8cc;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            color: #e0e0e0;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: #00a8cc;
+            color: white;
+            padding: 1rem 2.5rem;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: all 0.3s;
+            border: 2px solid #00a8cc;
+            font-size: 1.1rem;
+        }
+
+        .cta-button:hover {
+            background: transparent;
+            color: #00a8cc;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,168,204,0.3);
+        }
+
+        /* Footer */
+        footer {
+            background: #0d0d1a;
+            color: white;
+            padding: 3rem 0 1.5rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            color: #00a8cc;
+            margin-bottom: 1rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .footer-section h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background: #ffd700;
+        }
+
+        .footer-section p, .footer-section a {
+            color: #ccc;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: #00a8cc;
+            padding-left: 5px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #999;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .service-detail-header {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .service-detail-icon {
+                margin-right: 0;
+                margin-bottom: 1rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .page-header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .nav-links {
+                gap: 1rem;
+            }
+            
+            .service-features {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .services-overview {
+                grid-template-columns: 1fr;
+            }
+            
+            .process-steps {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">EXCELL MINING</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="services.html" class="active">Services</a></li>
+                <!--<li><a href="projects.html">Projects</a></li>-->
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="page-header-content">
+            <h1>Our Services</h1>
+            <p>Comprehensive mining and construction solutions tailored to meet your specific operational requirements</p>
+        </div>
+    </section>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+        <a href="index.html">Home</a> &gt; <span>Services</span>
+    </div>
+
+    <!-- Services Overview Section -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title center">Comprehensive Service Portfolio</h2>
+            <p class="section-subtitle center">We offer a diverse range of specialised services and products designed to meet the unique needs of the mining and construction industries</p>
+            
+            <div class="services-overview">
+                <div class="service-overview-card">
+                    <div class="service-icon">⚙️</div>
+                    <h3>GET Maintenance & Equipment Rebuilds</h3>
+                    <p>Specialized maintenance of ground-engaging tools to ensure optimal machinery performance, productivity, and longevity.</p>
+                    <a href="#get-maintenance" class="service-link">Learn More →</a>
+                </div>
+                <div class="service-overview-card">
+                    <div class="service-icon">🏗️</div>
+                    <h3>Steel Structures Supply & Fabrication</h3>
+                    <p>Custom design and fabrication of steel mining equipment and structures to exact client specifications.</p>
+                    <a href="#steel-structures" class="service-link">Learn More →</a>
+                </div>
+                <div class="service-overview-card">
+                    <div class="service-icon">🏭</div>
+                    <h3>Civil Maintenance Services</h3>
+                    <p>Comprehensive maintenance of infrastructure including buildings, roads, and bridges with full support services.</p>
+                    <a href="#civil-maintenance" class="service-link">Learn More →</a>
+                </div>
+                <div class="service-overview-card">
+                    <div class="service-icon">🚜</div>
+                    <h3>Crane Hire Services</h3>
+                    <p>Reliable crane solutions for diverse lifting and rigging requirements with truck-mounted and custom options.</p>
+                    <a href="#crane-hire" class="service-link">Learn More →</a>
+                </div>
+                <div class="service-overview-card">
+                    <div class="service-icon">🔧</div>
+                    <h3>Mechanical Maintenance</h3>
+                    <p>Expert maintenance services to restore full operational capacity during shutdown periods efficiently.</p>
+                    <a href="#mechanical-maintenance" class="service-link">Learn More →</a>
+                </div>
+                <div class="service-overview-card">
+                    <div class="service-icon">📦</div>
+                    <h3>Pipe Supply & Fabrication</h3>
+                    <p>Manufacturing and installation of steel and HDPE pipes tailored to precise project requirements.</p>
+                    <a href="#pipe-supply" class="service-link">Learn More →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Detailed Services Section -->
+    <section class="section detailed-services">
+        <div class="container">
+            <h2 class="section-title center">Our Service Details</h2>
+            <p class="section-subtitle center">In-depth look at our specialized services and capabilities</p>
+            
+            <!-- GET Maintenance Service -->
+            <div class="service-detail-card" id="get-maintenance">
+                <div class="service-detail-header">
+                    <div class="service-detail-icon">⚙️</div>
+                    <div class="service-detail-title">
+                        <h3>GET Maintenance and Equipment Rebuilds</h3>
+                        <p>Ensuring machinery operates at optimal efficiency</p>
+                    </div>
+                </div>
+                <div class="service-detail-content">
+                    <p>Our GET (Ground Engaging Tools) maintenance service focuses on maintaining and rebuilding the critical components that directly interact with the ground during mining operations. Proper maintenance of these tools significantly influences productivity, fuel efficiency, and equipment longevity.</p>
+                    
+                    <h4>Our GET Maintenance Services Include:</h4>
+                    <div class="service-features">
+                        <div class="service-feature">
+                            <div class="feature-icon">✓</div>
+                            <div class="feature-text">
+                                <h5>Bucket Refurbishment</h5>
+                                <p>Complete overhaul and reinforcement of mining buckets</p>
+                            </div>
+                        </div>
+                        <div class="service-feature">
+                            <div class="feature-icon">✓</div>
+                            <div class="feature-text">
+                                <h5>Wear Parts Replacement</h5>
+                                <p>Replacement of teeth, edges, and other wear components</p>
+                            </div>
+                        </div>
+                        <div class="service-feature">
+                            <div class="feature-icon">✓</div>
+                            <div class="feature-text">
+                                <h5>Component Rebuilding</h5>
+                                <p>Rebuilding of worn components to extend service life</p>
+                            </div>
+                        </div>
+                        <div class="service-feature">
+                            <div class="feature-icon">✓</div>
+                            <div class="feature-text">
+                                <h5>Performance Optimization</h5>
+                                <p>Enhancements to improve digging efficiency and reduce fuel consumption</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Steel Structures Service -->
+            <div class="service-detail-card" id="steel-structures">
+                <div class="service-detail-header">
+                    <div class="service-detail-icon">🏗️</div>
+                    <div class="service-detail-title">
+                        <h3>Steel Structures Supply and Fabrication</h3>
+                        <p>Custom solutions for mining operations</p>
+                    </div>
+                </div>
+                <div class="service-detail-content">
+                    <p>We specialize in designing and producing steel mining equipment and structures to exact client specifications. Our in-house drafting and manufacturing capabilities ensure precision and quality in every project.</p>
+                    
+                    <h4>Our Steel Fabrication Capabilities:</h4>
+                    <div class="service-features">
+                        <div class="service-feature">
+                            <div class="feature-icon">✓</div>
+                            <div class="feature-text">
+                                <h5>Custom Design</h5>
+                                <p>Tailored solutions to meet specific operational requirements</p>
+                            </div>
+                        </div>
+                        <div class="service-feature">
+                            <div class="feature-icon">✓</div>
+                            <div class="feature-text">
+                                <h5>Structural Fabrication</h5>
+                                <p>Fabrication of support structures, platforms, and frameworks</p>
+                            </div>
+                        </div>
+                        <div class="service-feature">
+                            <div class="feature-icon">✓</div>
+                            <div class="feature-text">
+                                <h5>Mining Equipment</h5>
+                                <p>Specialized equipment designed for mining applications</p>
+                            </div>
+                        </div>
+                        <div class="service-feature">
+                            <div class="feature-icon">✓</div>
+                            <div class="feature-text">
+                                <h5>Quality Assurance</h5>
+                                <p>Rigorous quality control throughout the fabrication process</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Civil Maintenance Service -->
+            <div class="service-detail-card" id="civil-maintenance">
+                <div class="service-detail-header">
+                    <div class="service-detail-icon">🏭</div>
+                    <div class="service-detail-title">
+                        <h3>Civil Maintenance Services</h3>
+                        <p>Comprehensive infrastructure maintenance</p>
+                    </div>
+                </div>
+                <div class="service-detail-content">
+                    <p>We provide comprehensive maintenance of mining and industrial infrastructure including buildings, roads, and bridges. Our services encompass all aspects of civil maintenance to ensure operational continuity and safety.</p>
+                    
+                    <h4>Our Civil Maintenance Services:</h4>
+                    <div class="service-features">
+                        <div class="service-feature">
+                            <div class="feature-icon">✓</div>
+                            <div class="feature-text">
+                                <h5>Building Maintenance</h5>
+                                <p>Repair and upkeep of industrial buildings and facilities</p>
+                            </div>
+                        </div>
+                        <div class="service-feature">
+                            <div class="feature-icon">✓</div>
+                            <div class="feature-text">
+                                <h5>Road Maintenance</h5>
+                                <p>Maintenance of access roads and haul roads</p>
+                            </div>
+                        </div>
+                        <div class="service-feature">
+                            <div class="feature-icon">✓</div>
+                            <div class="feature-text">
+                                <h5>Plumbing & Carpentry</h5>
+                                <p>Specialized trades services for facility maintenance</p>
+                            </div>
+                        </div>
+                        <div class="service-feature">
+                            <div class="feature-icon">✓</div>
+                            <div class="feature-text">
+                                <h5>Landscaping & Site Works</h5>
+                                <p>Site maintenance and environmental management</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Additional services would continue here following the same pattern -->
+            
+        </div>
+    </section>
+
+    <!-- Our Process Section -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title center">Our Service Process</h2>
+            <p class="section-subtitle center">How we deliver exceptional service from concept to completion</p>
+            
+            <div class="process-steps">
+                <div class="process-step">
+                    <div class="step-number">1</div>
+                    <div class="step-icon">📞</div>
+                    <h3>Consultation</h3>
+                    <p>We begin with a detailed consultation to understand your specific requirements, challenges, and objectives.</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">2</div>
+                    <div class="step-icon">📐</div>
+                    <h3>Planning & Design</h3>
+                    <p>Our team develops customized solutions with precise planning and design tailored to your operation.</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">3</div>
+                    <div class="step-icon">⚙️</div>
+                    <h3>Execution</h3>
+                    <p>We implement the planned solution with skilled artisans and quality materials, ensuring minimal disruption.</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">4</div>
+                    <div class="step-icon">✅</div>
+                    <h3>Quality Assurance</h3>
+                    <p>Every project undergoes rigorous quality checks to ensure it meets our high standards and your expectations.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Ready to Discuss Your Project?</h2>
+            <p>Contact us today to learn how our comprehensive mining services can enhance your operations and efficiency.</p>
+            <a href="contact.html" class="cta-button">Get a Quote</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Excell Mining</h3>
+                <p>"Faith meets opportunity meets success."</p>
+                <p style="margin-top: 1rem;">Reg No: 2018/244820/07</p>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Details</h3>
+                <p>📞 053 050 1124</p>
+                <p><a href="mailto:gladwin.rainers@excellmining.co.za">📧 gladwin.rainers@excellmining.co.za</a></p>
+                <p><a href="mailto:info@excellmining.co.za">📧 info@excellmining.co.za</a></p>
+            </div>
+            <div class="footer-section">
+                <h3>Location</h3>
+                <p>502 Gemsbok Street</p>
+                <p>Deben, 8460</p>
+                <p>Northern Cape, South Africa</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <p><a href="index.html">Home</a></p>
+                <p><a href="about.html">About Us</a></p>
+                <p><a href="services.html">Services</a></p>
+                <p><a href="contact.html">Contact</a></p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Excell Mining. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

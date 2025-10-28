@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Excell Mining & Construction Services</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+            background-color: #f8f9fa;
+        }
+
+        /* Navigation */
+        nav {
+            background: #1a1a2e;
+            padding: 1.2rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #00a8cc;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: all 0.3s;
+        }
+
+        .logo:hover {
+            color: #ffd700;
+            transform: scale(1.05);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            font-size: 0.95rem;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: #00a8cc;
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #00a8cc;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a.active {
+            color: #00a8cc;
+        }
+
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            padding: 160px 2rem 80px;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><rect width="2" height="2" fill="white" opacity="0.1"/></svg>');
+            opacity: 0.3;
+        }
+
+        .page-header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .page-header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            font-weight: 800;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            color: #00a8cc;
+        }
+
+        .page-header p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.8;
+            color: #e0e0e0;
+        }
+
+        /* Breadcrumb */
+        .breadcrumb {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            background: transparent;
+        }
+
+        .breadcrumb a {
+            color: #00a8cc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .breadcrumb a:hover {
+            color: #ffd700;
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            color: #1a1a2e;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 80px;
+            height: 3px;
+            background: #00a8cc;
+        }
+
+        .section-title.center {
+            text-align: center;
+        }
+
+        .section-title.center::after {
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .section-subtitle {
+            color: #666;
+            font-size: 1.1rem;
+            margin-bottom: 3rem;
+            max-width: 800px;
+        }
+
+        .section-subtitle.center {
+            text-align: center;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* About Intro */
+        .about-intro {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text {
+            padding-right: 2rem;
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+            line-height: 1.8;
+        }
+
+        .about-image {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .about-image:hover {
+            transform: translateY(-5px);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Stats Section */
+        .stats {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: white;
+            padding: 80px 0;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .stat-item {
+            padding: 2rem 1rem;
+            transition: transform 0.3s;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            color: #00a8cc;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            color: #e0e0e0;
+        }
+
+        /* Values Section */
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .value-card {
+            background: white;
+            padding: 2.5rem 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border-top: 4px solid #00a8cc;
+            transition: all 0.3s;
+            text-align: center;
+        }
+
+        .value-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+
+        .value-icon {
+            font-size: 3rem;
+            color: #00a8cc;
+            margin-bottom: 1.5rem;
+        }
+
+        .value-card h3 {
+            color: #1a1a2e;
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+        }
+
+        .value-card p {
+            color: #666;
+            line-height: 1.7;
+        }
+
+        /* Leadership Section */
+        .leadership {
+            background: #f5f5f5;
+        }
+
+        .leader-profile {
+            max-width: 900px;
+            margin: 3rem auto;
+            background: white;
+            padding: 3rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            border-top: 5px solid #00a8cc;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .leader-profile::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #00a8cc, #ffd700);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.5s;
+        }
+
+        .leader-profile:hover::before {
+            transform: scaleX(1);
+        }
+
+        .leader-profile:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+
+        .leader-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .leader-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-right: 2rem;
+            border: 4px solid #00a8cc;
+        }
+
+        .leader-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .leader-info h3 {
+            color: #00a8cc;
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .leader-info h4 {
+            color: #666;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .leader-info p {
+            color: #888;
+            font-style: italic;
+        }
+
+        .leader-bio {
+            line-height: 1.8;
+        }
+
+        .leader-bio p {
+            margin-bottom: 1.5rem;
+        }
+
+        /* Timeline Section */
+        .timeline {
+            position: relative;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            width: 4px;
+            background: #00a8cc;
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            padding: 2rem 0;
+            position: relative;
+            width: 50%;
+        }
+
+        .timeline-item:nth-child(odd) {
+            left: 0;
+            padding-right: 3rem;
+            text-align: right;
+        }
+
+        .timeline-item:nth-child(even) {
+            left: 50%;
+            padding-left: 3rem;
+        }
+
+        .timeline-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border-left: 4px solid #00a8cc;
+            transition: all 0.3s;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content {
+            border-left: none;
+            border-right: 4px solid #00a8cc;
+        }
+
+        .timeline-content:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .timeline-year {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #00a8cc;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-title {
+            font-size: 1.3rem;
+            color: #1a1a2e;
+            margin-bottom: 1rem;
+        }
+
+        .timeline-desc {
+            color: #666;
+            line-height: 1.7;
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 20px;
+            height: 20px;
+            background: #00a8cc;
+            border: 4px solid white;
+            border-radius: 50%;
+            transform: translateY(-50%);
+        }
+
+        .timeline-item:nth-child(odd)::after {
+            right: -10px;
+        }
+
+        .timeline-item:nth-child(even)::after {
+            left: -10px;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: white;
+            text-align: center;
+            padding: 80px 0;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #00a8cc;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            color: #e0e0e0;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: #00a8cc;
+            color: white;
+            padding: 1rem 2.5rem;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: all 0.3s;
+            border: 2px solid #00a8cc;
+            font-size: 1.1rem;
+        }
+
+        .cta-button:hover {
+            background: transparent;
+            color: #00a8cc;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,168,204,0.3);
+        }
+
+        /* Footer */
+        footer {
+            background: #0d0d1a;
+            color: white;
+            padding: 3rem 0 1.5rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            color: #00a8cc;
+            margin-bottom: 1rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .footer-section h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background: #ffd700;
+        }
+
+        .footer-section p, .footer-section a {
+            color: #ccc;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: #00a8cc;
+            padding-left: 5px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #999;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .about-intro {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .about-text {
+                padding-right: 0;
+            }
+            
+            .timeline::before {
+                left: 30px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 0;
+                text-align: left;
+            }
+            
+            .timeline-item:nth-child(odd) {
+                left: 0;
+                padding-right: 0;
+                text-align: left;
+            }
+            
+            .timeline-item:nth-child(even) {
+                left: 0;
+                padding-left: 70px;
+            }
+            
+            .timeline-item::after {
+                left: 20px !important;
+            }
+            
+            .timeline-content {
+                border-left: 4px solid #00a8cc !important;
+                border-right: none !important;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .page-header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .leader-header {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .leader-image {
+                margin-right: 0;
+                margin-bottom: 1.5rem;
+            }
+            
+            .nav-links {
+                gap: 1rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .values-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">EXCELL MINING</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html" class="active">About</a></li>
+                <li><a href="services.html">Services</a></li>
+                <!--<li><a href="projects.html">Projects</a></li>-->
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="page-header-content">
+            <h1>About Excell Mining</h1>
+            <p>Our journey from a small mining services firm to a leading provider in the Northern Cape</p>
+        </div>
+    </section>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+        <a href="index.html">Home</a> &gt; <span>About Us</span>
+    </div>
+
+    <!-- About Intro Section -->
+    <section class="section">
+        <div class="container">
+            <div class="about-intro">
+                <div class="about-text">
+                    <h2 class="section-title">Our Story</h2>
+                    <p>In 2015, Gladwin Rainers, a certified boilermaker, established a small mining services firm in Kathu, Northern Cape, near Kumba Iron Ore's Sishen Mine. With a vision to create sustainable job opportunities and foster economic growth in the community, Excell Mining began its journey.</p>
+                    <p>Today, Excell Mining employs around 72 individuals and aspires to become the foremost mining services provider in the region. The company specialises in services like bucket refurbishment, maintenance, straps, and steel fabrication.</p>
+                    <p>Rapid growth over the last three years has seen its workforce grow from 25 in 2019 to its current size. Most employees are locals, including skilled artisans, administrative staff, and safety personnel.</p>
+                </div>
+                <div class="about-image">
+                    <!-- Placeholder for company image -->
+                    <div style="width:100%; height:400px; background:linear-gradient(135deg, #1a1a2e 0%, #00a8cc 100%); display:flex; align-items:center; justify-content:center; color:white; font-size:1.5rem;">
+                        Excell Mining Operations
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">72+</div>
+                    <div class="stat-label">Employees</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">8+</div>
+                    <div class="stat-label">Years Experience</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">30+</div>
+                    <div class="stat-label">Qualified Artisans</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">Client Satisfaction</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Values Section -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title center">Our Values</h2>
+            <p class="section-subtitle center">The principles that guide our operations and define our company culture</p>
+            
+            <div class="values-grid">
+                <div class="value-card">
+                    <div class="value-icon">✓</div>
+                    <h3>Excellence</h3>
+                    <p>We strive for the highest quality in all our services, from steel fabrication to equipment maintenance, ensuring client satisfaction and operational efficiency.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">👥</div>
+                    <h3>Community</h3>
+                    <p>We're committed to creating sustainable job opportunities and fostering economic growth within the Kathu community and surrounding areas.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">⚙️</div>
+                    <h3>Innovation</h3>
+                    <p>We stay ahead of industry trends by evolving our skills, technology, and equipment to deliver cutting-edge solutions to our clients.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">🤝</div>
+                    <h3>Partnership</h3>
+                    <p>We build strong, enduring relationships with our clients, working collaboratively to achieve their operational goals.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">🛡️</div>
+                    <h3>Safety</h3>
+                    <p>We prioritize the well-being of our employees and clients, maintaining the highest safety standards across all operations.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">📈</div>
+                    <h3>Growth</h3>
+                    <p>We continuously invest in skills development and equipment to expand our capabilities and service offerings.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Leadership Section -->
+    <section class="section leadership">
+        <div class="container">
+            <h2 class="section-title center">Our Leadership</h2>
+            <p class="section-subtitle center">Meet the visionary behind Excell Mining's success</p>
+            
+            <div class="leader-profile">
+                <div class="leader-header">
+                    <div class="leader-image">
+                        <!-- Placeholder for leader image -->
+                        <div style="width:100%; height:100%; background:linear-gradient(135deg, #00a8cc 0%, #1a1a2e 100%); display:flex; align-items:center; justify-content:center; color:white; font-size:3rem;">
+                            GR
+                        </div>
+                    </div>
+                    <div class="leader-info">
+                        <h3>Gladwin Rainers</h3>
+                        <h4>CEO and Managing Director</h4>
+                        <p>Certified Red Seal Boilermaker</p>
+                    </div>
+                </div>
+                <div class="leader-bio">
+                    <p>Gladwin Rainers, the CEO and Managing Director of Excell, is a Certified Red Seal Boilermaker who draws inspiration from his father's enduring legacy. Witnessing the challenges of high unemployment rates in Kathu, Gladwin was driven to make a meaningful impact by establishing Excell.</p>
+                    <p>His vision centers on creating sustainable job opportunities and fostering economic growth within the community. With a commitment to excellence and innovation, Gladwin's leadership reflects his passion for empowering others, contributing to a brighter future for Kathu through skill development and employment initiatives.</p>
+                    <p>Under his guidance, Excell Mining has grown from a small startup to a significant employer in the region, with a reputation for quality workmanship and reliable service.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Timeline Section -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title center">Our Journey</h2>
+            <p class="section-subtitle center">Key milestones in Excell Mining's growth and development</p>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">2015</div>
+                        <h3 class="timeline-title">Company Foundation</h3>
+                        <p class="timeline-desc">Gladwin Rainers establishes Excell Mining as a small mining services firm in Kathu, Northern Cape, near Kumba Iron Ore's Sishen Mine.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">2015</div>
+                        <h3 class="timeline-title">Dingleton Resettlement Project</h3>
+                        <p class="timeline-desc">Excell contributes to the Dingleton resettlement project, delivering steelworks as a sub-contractor to the main contractor.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">2019</div>
+                        <h3 class="timeline-title">Significant Growth</h3>
+                        <p class="timeline-desc">Workforce grows from 25 employees to current size, with most employees being locals from the Kathu community.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">2021</div>
+                        <h3 class="timeline-title">Service Expansion</h3>
+                        <p class="timeline-desc">Company expands service offerings to include crane hire, civil maintenance, and diversified fabrication capabilities.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">2023</div>
+                        <h3 class="timeline-title">Current Operations</h3>
+                        <p class="timeline-desc">Excell Mining now employs 72 individuals and serves as a critical supplier for major mining operations in the region.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Ready to Partner with Excell Mining?</h2>
+            <p>Discover how our expertise in mining services can benefit your operations. Contact us today to discuss your project requirements.</p>
+            <a href="contact.html" class="cta-button">Get In Touch</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Excell Mining</h3>
+                <p>"Faith meets opportunity meets success."</p>
+                <p style="margin-top: 1rem;">Reg No: 2018/244820/07</p>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Details</h3>
+                <p>📞 053 050 1124</p>
+                <p><a href="mailto:gladwin.rainers@excellmining.co.za">📧 gladwin.rainers@excellmining.co.za</a></p>
+                <p><a href="mailto:info@excellmining.co.za">📧 info@excellmining.co.za</a></p>
+            </div>
+            <div class="footer-section">
+                <h3>Location</h3>
+                <p>502 Gemsbok Street</p>
+                <p>Deben, 8460</p>
+                <p>Northern Cape, South Africa</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <p><a href="index.html">Home</a></p>
+                <p><a href="about.html">About Us</a></p>
+                <p><a href="services.html">Services</a></p>
+                <p><a href="contact.html">Contact</a></p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Excell Mining. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
