@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Excell Mining - Leading Mining Services Provider</title>
+    <title>Excell Mining - Premier Mining Services Provider</title>
+    <link rel="icon" href="assets/EXCellLogo.png" type="image/x-icon">
     <style>
         * {
             margin: 0;
@@ -11,9 +12,20 @@
             box-sizing: border-box;
         }
 
+        :root {
+            --primary-gold: #D4AF37;
+            --secondary-gold: #FFD700;
+            --dark-blue: #0A1628;
+            --accent-blue: #1E3A5F;
+            --steel-gray: #4A5568;
+            --light-gray: #E2E8F0;
+            --white: #FFFFFF;
+            --mining-orange: #FF6B35;
+        }
+
         body {
-            font-family: 'Arial', sans-serif;
-            color: #333;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--steel-gray);
             line-height: 1.6;
             overflow-x: hidden;
             scroll-behavior: smooth;
@@ -21,19 +33,20 @@
 
         /* Navigation */
         nav {
-            background: rgba(26, 26, 46, 0.95);
-            padding: 1.2rem 0;
+            background: linear-gradient(135deg, rgba(10, 22, 40, 0.98) 0%, rgba(30, 58, 95, 0.98) 100%);
+            padding: 1rem 0;
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
-            transition: all 0.3s;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            transition: all 0.4s ease;
         }
 
         nav.scrolled {
-            padding: 0.8rem 0;
-            background: rgba(26, 26, 46, 0.98);
+            padding: 0.6rem 0;
+            background: linear-gradient(135deg, rgba(10, 22, 40, 1) 0%, rgba(30, 58, 95, 1) 100%);
         }
 
         .nav-container {
@@ -47,69 +60,92 @@
 
         .logo {
             font-size: 1.8rem;
-            font-weight: bold;
-            color: #00a8cc;
+            font-weight: 900;
+            color: var(--primary-gold);
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: 3px;
             transition: all 0.3s;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+
+        .logo::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-gold), var(--mining-orange));
+            transition: width 0.4s ease;
+        }
+
+        .logo:hover::after {
+            width: 100%;
         }
 
         .logo:hover {
-            color: #ffd700;
             transform: scale(1.05);
+            color: var(--secondary-gold);
         }
 
         .nav-links {
             display: flex;
-            gap: 2.5rem;
+            gap: 3rem;
             list-style: none;
         }
 
         .nav-links a {
-            color: #fff;
+            color: var(--white);
             text-decoration: none;
-            font-weight: 500;
+            font-weight: 600;
             transition: all 0.3s;
             font-size: 0.95rem;
             position: relative;
             padding: 0.5rem 0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
-        .nav-links a::after {
+        .nav-links a::before {
             content: '';
             position: absolute;
             width: 0;
             height: 2px;
             bottom: 0;
-            left: 0;
-            background-color: #00a8cc;
-            transition: width 0.3s;
+            left: 50%;
+            background: linear-gradient(90deg, var(--primary-gold), var(--mining-orange));
+            transition: all 0.4s ease;
+            transform: translateX(-50%);
         }
 
         .nav-links a:hover {
-            color: #00a8cc;
+            color: var(--primary-gold);
         }
 
-        .nav-links a:hover::after {
+        .nav-links a:hover::before {
             width: 100%;
         }
 
-        /* Mobile Menu */
         .mobile-menu-btn {
             display: none;
             background: none;
             border: none;
             color: white;
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .mobile-menu-btn:hover {
+            transform: scale(1.1);
+            color: var(--primary-gold);
         }
 
         /* Hero Section */
         .hero {
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-            padding: 140px 2rem 80px;
-            text-align: center;
-            color: white;
+            background: linear-gradient(135deg, var(--dark-blue) 0%, var(--accent-blue) 100%);
+            padding: 160px 2rem 100px;
             position: relative;
             overflow: hidden;
             min-height: 100vh;
@@ -124,7 +160,25 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><rect width="2" height="2" fill="white" opacity="0.1"/></svg>');
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(212, 175, 55, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255, 107, 53, 0.1) 0%, transparent 50%);
+            animation: pulse 8s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 0.8; }
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><defs><pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M 20 0 L 0 0 0 20" fill="none" stroke="rgba(255,255,255,0.03)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
             opacity: 0.3;
         }
 
@@ -133,59 +187,149 @@
             margin: 0 auto;
             position: relative;
             z-index: 1;
+            text-align: center;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.2), rgba(255, 107, 53, 0.2));
+            border: 2px solid var(--primary-gold);
+            color: var(--secondary-gold);
+            padding: 0.6rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 2rem;
+            animation: fadeInDown 1s ease-out;
         }
 
         .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            font-weight: 800;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-            color: #00a8cc;
+            font-size: 4.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 900;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.5);
+            background: linear-gradient(135deg, var(--primary-gold), var(--secondary-gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             animation: fadeInUp 1s ease-out;
+            line-height: 1.2;
         }
 
         .hero-tagline {
-            font-size: 1.4rem;
+            font-size: 1.6rem;
             margin-bottom: 2rem;
             font-style: italic;
-            opacity: 0.95;
-            color: #ffd700;
+            color: var(--secondary-gold);
             animation: fadeInUp 1s ease-out 0.2s both;
+            font-weight: 300;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
         }
 
         .hero p {
-            font-size: 1.15rem;
-            max-width: 800px;
-            margin: 0 auto 2rem;
-            line-height: 1.8;
+            font-size: 1.2rem;
+            max-width: 900px;
+            margin: 0 auto 3rem;
+            line-height: 1.9;
             animation: fadeInUp 1s ease-out 0.4s both;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 4rem;
+            margin-top: 3rem;
+            animation: fadeInUp 1s ease-out 0.6s both;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 900;
+            color: var(--primary-gold);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.8);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            margin-top: 2rem;
+            animation: fadeInUp 1s ease-out 0.8s both;
         }
 
         .cta-button {
             display: inline-block;
-            background: #00a8cc;
-            color: white;
-            padding: 1rem 2.5rem;
+            padding: 1.2rem 3rem;
             text-decoration: none;
-            border-radius: 5px;
-            font-weight: bold;
-            transition: all 0.3s;
-            margin-top: 1rem;
-            border: 2px solid #00a8cc;
-            animation: fadeInUp 1s ease-out 0.6s both;
+            border-radius: 50px;
+            font-weight: 700;
+            transition: all 0.4s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.95rem;
+            position: relative;
+            overflow: hidden;
         }
 
-        .cta-button:hover {
+        .cta-button.primary {
+            background: linear-gradient(135deg, var(--primary-gold), var(--mining-orange));
+            color: var(--white);
+            border: 2px solid transparent;
+        }
+
+        .cta-button.primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--mining-orange), var(--primary-gold));
+            transition: left 0.4s ease;
+            z-index: -1;
+        }
+
+        .cta-button.primary:hover::before {
+            left: 0;
+        }
+
+        .cta-button.primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.4);
+        }
+
+        .cta-button.secondary {
             background: transparent;
-            color: #00a8cc;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0,168,204,0.3);
+            color: var(--white);
+            border: 2px solid var(--primary-gold);
+        }
+
+        .cta-button.secondary:hover {
+            background: var(--primary-gold);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
         }
 
         /* About Section */
         .about {
-            padding: 80px 2rem;
-            background: #f5f5f5;
+            padding: 100px 2rem;
+            background: linear-gradient(180deg, var(--white) 0%, var(--light-gray) 100%);
+            position: relative;
         }
 
         .container {
@@ -193,195 +337,218 @@
             margin: 0 auto;
         }
 
-        .section-title {
-            font-size: 2.5rem;
-            color: #1a1a2e;
-            margin-bottom: 1rem;
+        .section-header {
             text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary-gold), var(--mining-orange));
+            color: var(--white);
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
             font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            color: var(--dark-blue);
+            margin-bottom: 1rem;
+            font-weight: 900;
             position: relative;
-            padding-bottom: 1rem;
+            display: inline-block;
         }
 
         .section-title::after {
             content: '';
             position: absolute;
-            bottom: 0;
+            bottom: -10px;
             left: 50%;
             transform: translateX(-50%);
-            width: 80px;
-            height: 3px;
-            background: #00a8cc;
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-gold), var(--mining-orange));
+            border-radius: 2px;
         }
 
         .section-subtitle {
             text-align: center;
-            color: #00a8cc;
-            font-size: 1.1rem;
+            color: var(--steel-gray);
+            font-size: 1.2rem;
             margin-bottom: 3rem;
-            font-weight: 600;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        .about-content {
-            background: white;
-            padding: 3rem;
-            border-radius: 10px;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-            border-left: 5px solid #00a8cc;
-            line-height: 1.8;
-            transition: all 0.3s;
-        }
-
-        .about-content:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-        }
-
-        /* Core Strengths Section */
-        .strengths {
-            padding: 80px 2rem;
-            background: white;
-        }
-
-        .strengths-list {
+        .about-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 2rem;
             margin-top: 3rem;
         }
 
-        .strength-item {
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-            padding: 2rem;
-            border-radius: 8px;
-            color: white;
-            border-top: 4px solid #00a8cc;
-            transition: all 0.3s;
+        .about-card {
+            background: var(--white);
+            padding: 3rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            transition: all 0.4s ease;
             position: relative;
             overflow: hidden;
+            border-top: 4px solid var(--primary-gold);
         }
 
-        .strength-item::before {
+        .about-card::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, rgba(0,168,204,0.1) 0%, rgba(255,215,0,0.1) 100%);
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.05), rgba(255, 107, 53, 0.05));
             opacity: 0;
-            transition: opacity 0.3s;
+            transition: opacity 0.4s ease;
         }
 
-        .strength-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        .about-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
         }
 
-        .strength-item:hover::before {
+        .about-card:hover::before {
             opacity: 1;
         }
 
-        .strength-item h3 {
-            color: #00a8cc;
+        .about-card h3 {
+            color: var(--dark-blue);
+            font-size: 1.5rem;
             margin-bottom: 1rem;
-            font-size: 1.2rem;
-            position: relative;
-            z-index: 1;
+            font-weight: 700;
         }
 
-        .strength-item p {
-            position: relative;
-            z-index: 1;
+        .about-card p {
+            line-height: 1.8;
+            color: var(--steel-gray);
         }
 
-        /* Leadership Section */
-        .leadership {
-            padding: 80px 2rem;
-            background: #f5f5f5;
-        }
-
-        .leader-profile {
-            max-width: 900px;
-            margin: 3rem auto;
-            background: white;
-            padding: 3rem;
-            border-radius: 10px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-            border-top: 5px solid #00a8cc;
-            transition: all 0.3s;
+        /* Core Strengths Section */
+        .strengths {
+            padding: 100px 2rem;
+            background: var(--dark-blue);
+            color: var(--white);
             position: relative;
             overflow: hidden;
         }
 
-        .leader-profile::before {
+        .strengths::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 5px;
-            background: linear-gradient(90deg, #00a8cc, #ffd700);
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 0.5s;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><defs><pattern id="hexagons" width="50" height="43.4" patternUnits="userSpaceOnUse" patternTransform="scale(2)"><polygon points="24.8,22 37.3,29.2 37.3,43.7 24.8,50.9 12.3,43.7 12.3,29.2" fill="none" stroke="rgba(212,175,55,0.1)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23hexagons)"/></svg>');
+            opacity: 0.3;
         }
 
-        .leader-profile:hover::before {
-            transform: scaleX(1);
+        .strengths .section-title {
+            color: var(--white);
         }
 
-        .leader-profile:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        .strengths-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+            position: relative;
+            z-index: 1;
         }
 
-        .leader-profile h3 {
-            color: #00a8cc;
-            font-size: 2rem;
-            margin-bottom: 0.5rem;
+        .strength-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
+            padding: 2.5rem;
+            border-radius: 15px;
+            border: 2px solid rgba(212, 175, 55, 0.3);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
         }
 
-        .leader-profile h4 {
-            color: #666;
+        .strength-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .strength-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: var(--primary-gold);
+            box-shadow: 0 20px 50px rgba(212, 175, 55, 0.2);
+        }
+
+        .strength-card:hover::before {
+            opacity: 1;
+        }
+
+        .strength-icon {
+            font-size: 3rem;
             margin-bottom: 1.5rem;
-            font-size: 1.1rem;
+            display: block;
         }
 
-        .leader-profile p {
+        .strength-card h3 {
+            color: var(--primary-gold);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .strength-card p {
+            position: relative;
+            z-index: 1;
             line-height: 1.8;
+            color: rgba(255, 255, 255, 0.9);
         }
 
         /* Services Section */
         .services {
-            padding: 80px 2rem;
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-            color: white;
-        }
-
-        .services .section-title {
-            color: white;
-        }
-
-        .services .section-subtitle {
-            color: #00a8cc;
+            padding: 100px 2rem;
+            background: linear-gradient(180deg, var(--light-gray) 0%, var(--white) 100%);
         }
 
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
             margin-top: 3rem;
         }
 
         .service-card {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 2.5rem;
-            border-radius: 10px;
-            border: 2px solid #00a8cc;
-            transition: all 0.3s;
+            background: var(--white);
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            transition: all 0.4s ease;
             position: relative;
             overflow: hidden;
+            border: 2px solid transparent;
         }
 
         .service-card::before {
@@ -390,26 +557,38 @@
             top: 0;
             left: 0;
             width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(0,168,204,0.2) 0%, rgba(255,215,0,0.2) 100%);
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-
-        .service-card:hover {
-            background: rgba(0, 168, 204, 0.1);
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0, 168, 204, 0.2);
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary-gold), var(--mining-orange));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
         }
 
         .service-card:hover::before {
-            opacity: 1;
+            transform: scaleX(1);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+            border-color: var(--primary-gold);
+        }
+
+        .service-number {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 4rem;
+            font-weight: 900;
+            color: rgba(212, 175, 55, 0.1);
+            line-height: 1;
         }
 
         .service-card h3 {
-            color: #00a8cc;
-            margin-bottom: 1rem;
-            font-size: 1.3rem;
+            color: var(--dark-blue);
+            margin-bottom: 1.5rem;
+            font-size: 1.4rem;
+            font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 1px;
             position: relative;
@@ -417,33 +596,93 @@
         }
 
         .service-card p {
+            color: var(--steel-gray);
+            line-height: 1.8;
             position: relative;
             z-index: 1;
         }
 
+        /* Leadership Section */
+        .leadership {
+            padding: 100px 2rem;
+            background: var(--white);
+        }
+
+        .leader-profile {
+            max-width: 1000px;
+            margin: 3rem auto;
+            background: linear-gradient(135deg, var(--dark-blue), var(--accent-blue));
+            padding: 4rem;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .leader-profile::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
+        }
+
+        .leader-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .leader-profile h3 {
+            color: var(--primary-gold);
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 900;
+        }
+
+        .leader-profile h4 {
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 2rem;
+            font-size: 1.2rem;
+            font-weight: 400;
+        }
+
+        .leader-profile p {
+            line-height: 1.9;
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
         /* Clients Section */
         .clients {
-            padding: 80px 2rem;
-            background: white;
+            padding: 100px 2rem;
+            background: linear-gradient(135deg, var(--dark-blue) 0%, var(--accent-blue) 100%);
+            color: var(--white);
+        }
+
+        .clients .section-title {
+            color: var(--white);
         }
 
         .clients-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 2rem;
             margin-top: 3rem;
         }
 
         .client-card {
-            background: #f5f5f5;
-            padding: 2.5rem 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 3rem 2rem;
             text-align: center;
-            border-radius: 8px;
-            font-weight: bold;
-            color: #1a1a2e;
-            border: 3px solid #00a8cc;
-            transition: all 0.3s;
-            font-size: 1.05rem;
+            border-radius: 15px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            border: 2px solid rgba(212, 175, 55, 0.3);
+            transition: all 0.4s ease;
+            backdrop-filter: blur(10px);
             position: relative;
             overflow: hidden;
         }
@@ -455,14 +694,15 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, #00a8cc, #1a1a2e);
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.2), rgba(255, 107, 53, 0.2));
             opacity: 0;
-            transition: opacity 0.3s;
+            transition: opacity 0.4s ease;
         }
 
         .client-card:hover {
-            color: white;
             transform: scale(1.05);
+            border-color: var(--primary-gold);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
         }
 
         .client-card:hover::before {
@@ -472,112 +712,15 @@
         .client-card span {
             position: relative;
             z-index: 1;
-        }
-
-        /* Advantages Section */
-        .advantages {
-            padding: 80px 2rem;
-            background: #f5f5f5;
-        }
-
-        .advantages-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .advantage-card {
-            background: white;
-            padding: 2rem;
-            border-radius: 8px;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-            border-left: 4px solid #ffd700;
-            transition: all 0.3s;
-        }
-
-        .advantage-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
-            border-left: 4px solid #00a8cc;
-        }
-
-        .advantage-card h3 {
-            color: #1a1a2e;
-            margin-bottom: 1rem;
-        }
-
-        /* Objectives Section */
-        .objectives {
-            padding: 80px 2rem;
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-            color: white;
-        }
-
-        .objectives .section-title {
-            color: white;
-        }
-
-        .objectives .section-subtitle {
-            color: #00a8cc;
-        }
-
-        .objectives-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .objective-card {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 2rem;
-            border-radius: 8px;
-            border: 2px solid #ffd700;
-            transition: all 0.3s;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .objective-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(255,215,0,0.2) 0%, rgba(0,168,204,0.2) 100%);
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-
-        .objective-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(255,215,0,0.2);
-        }
-
-        .objective-card:hover::before {
-            opacity: 1;
-        }
-
-        .objective-card h3 {
-            color: #ffd700;
-            margin-bottom: 1rem;
-            font-size: 1.2rem;
-            position: relative;
-            z-index: 1;
-        }
-
-        .objective-card p {
-            position: relative;
-            z-index: 1;
+            color: var(--white);
         }
 
         /* Footer */
         footer {
-            background: #0d0d1a;
-            color: white;
-            padding: 3rem 2rem 1.5rem;
+            background: linear-gradient(135deg, #000000 0%, var(--dark-blue) 100%);
+            color: var(--white);
+            padding: 4rem 2rem 2rem;
+            position: relative;
         }
 
         .footer-content {
@@ -586,56 +729,36 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 3rem;
-            margin-bottom: 2rem;
+            margin-bottom: 3rem;
         }
 
         .footer-section h3 {
-            color: #00a8cc;
-            margin-bottom: 1rem;
-            position: relative;
-            padding-bottom: 0.5rem;
-        }
-
-        .footer-section h3::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 40px;
-            height: 2px;
-            background: #ffd700;
+            color: var(--primary-gold);
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .footer-section p, .footer-section a {
-            color: #ccc;
+            color: rgba(255, 255, 255, 0.7);
             text-decoration: none;
             display: block;
-            margin-bottom: 0.5rem;
-            transition: color 0.3s;
+            margin-bottom: 0.8rem;
+            transition: all 0.3s;
         }
 
         .footer-section a:hover {
-            color: #00a8cc;
-            padding-left: 5px;
+            color: var(--primary-gold);
+            padding-left: 8px;
         }
 
         .footer-bottom {
             text-align: center;
             padding-top: 2rem;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: #999;
-        }
-
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            color: rgba(255, 255, 255, 0.5);
         }
 
         /* Back to Top Button */
@@ -643,17 +766,17 @@
             position: fixed;
             bottom: 30px;
             right: 30px;
-            background: #00a8cc;
-            color: white;
-            width: 50px;
-            height: 50px;
+            background: linear-gradient(135deg, var(--primary-gold), var(--mining-orange));
+            color: var(--white);
+            width: 55px;
+            height: 55px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             text-decoration: none;
             font-size: 1.5rem;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.3);
+            box-shadow: 0 5px 20px rgba(212, 175, 55, 0.4);
             transition: all 0.3s;
             opacity: 0;
             visibility: hidden;
@@ -666,27 +789,59 @@
         }
 
         .back-to-top:hover {
-            background: #ffd700;
-            color: #1a1a2e;
-            transform: translateY(-3px);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.5);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         /* Responsive Design */
         @media (max-width: 768px) {
             .hero h1 {
-                font-size: 2.5rem;
+                font-size: 2.8rem;
             }
-            
+
+            .hero-stats {
+                flex-direction: column;
+                gap: 2rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+
             .nav-links {
                 display: none;
                 position: absolute;
                 top: 100%;
                 left: 0;
                 width: 100%;
-                background: rgba(26, 26, 46, 0.98);
+                background: linear-gradient(135deg, rgba(10, 22, 40, 0.98) 0%, rgba(30, 58, 95, 0.98) 100%);
                 flex-direction: column;
                 padding: 1rem 0;
                 gap: 0;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.5);
             }
 
             .nav-links.active {
@@ -708,7 +863,11 @@
             }
 
             .section-title {
-                font-size: 2rem;
+                font-size: 2.2rem;
+            }
+
+            .about-grid, .services-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -721,7 +880,7 @@
             <button class="mobile-menu-btn">☰</button>
             <ul class="nav-links">
                 <li><a href="about.html">About</a></li>
-               <!--<li><a href="#strengths">Core Strengths</a></li>-->
+                <!--<li><a href="#strengths">Strengths</a></li>-->
                 <li><a href="services.html">Services</a></li>
                 <!--<li><a href="#clients">Clients</a></li>-->
                 <li><a href="contact.html">Contact</a></li>
@@ -732,22 +891,55 @@
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
+            <div class="hero-badge">Since 2015 • Northern Cape</div>
             <h1>EXCELL MINING</h1>
             <p class="hero-tagline">"Faith meets opportunity meets success."</p>
-            <p>Leading mining services provider in the Northern Cape, specializing in bucket refurbishment, maintenance, steel fabrication, and ground-engaging tools. Since 2015, we've grown from a small firm to employing 72 individuals, with aspirations to become the foremost mining services provider in the region.</p>
-            <a href="#contact" class="cta-button">Get In Touch</a>
+            <p>Premier mining services provider in the Northern Cape, specializing in bucket refurbishment, maintenance, steel fabrication, and ground-engaging tools. Delivering excellence in engineering solutions to South Africa's mining industry.</p>
+            
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <span class="stat-number">72+</span>
+                    <span class="stat-label">Skilled Employees</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">9+</span>
+                    <span class="stat-label">Years Excellence</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">30+</span>
+                    <span class="stat-label">Qualified Artisans</span>
+                </div>
+            </div>
+
+            <div class="cta-buttons">
+                <a href="#services" class="cta-button primary">Our Services</a>
+                <a href="#contact" class="cta-button secondary">Get In Touch</a>
+            </div>
         </div>
     </section>
 
     <!-- About Section -->
     <section id="about" class="about">
         <div class="container">
-            <h2 class="section-title">Company Profile</h2>
-            <p class="section-subtitle">Our Guiding Principle: "Faith meets opportunity meets success."</p>
-            <div class="about-content">
-                <p>In 2015, Gladwin Rainers, a certified boilermaker, established a small mining services firm in Kathu, Northern Cape, near Kumba Iron Ore's Sishen Mine. Today, Excell Mining employs around 72 individuals and aspires to become the foremost mining services provider in the region.</p>
-                <p style="margin-top: 1rem;">The company specialises in services like bucket refurbishment, maintenance, straps, and steel fabrication. Rapid growth over the last three years has seen its workforce grow from 25 in 2019 to its current size. Most employees are locals, including skilled artisans, administrative staff, and safety personnel.</p>
-                <p style="margin-top: 1rem;">Excell contributed to the Dingleton resettlement project in 2015, delivering steelworks as a sub-contractor to the main contractor. The company has also undertaken numerous mechanical and piping projects for Sishen and serves as a critical supplier of ground-engaging tools and maintenance services.</p>
+            <div class="section-header">
+                <div class="section-badge">Company Profile</div>
+                <h2 class="section-title">Engineering Excellence in Mining</h2>
+                <p class="section-subtitle">Building partnerships, delivering solutions, and empowering communities across South Africa's mining sector</p>
+            </div>
+            
+            <div class="about-grid">
+                <div class="about-card">
+                    <h3>Our Foundation</h3>
+                    <p>Established in 2015 by certified boilermaker Gladwin Rainers in Kathu, Northern Cape, near Kumba Iron Ore's Sishen Mine. From humble beginnings, we've grown into a workforce of 72 dedicated professionals, driven by our commitment to excellence and community empowerment.</p>
+                </div>
+                <div class="about-card">
+                    <h3>Our Growth</h3>
+                    <p>Experiencing remarkable expansion from 25 employees in 2019 to our current team size, we primarily employ local talent including skilled artisans, administrative staff, and safety personnel. Our growth reflects our dedication to creating sustainable employment opportunities in the Northern Cape.</p>
+                </div>
+                <div class="about-card">
+                    <h3>Our Impact</h3>
+                    <p>Major contributor to the Dingleton resettlement project (2015), delivering complex steelworks. We continue to serve as a critical supplier of ground-engaging tools and maintenance services to Sishen Mine, with extensive experience in mechanical and piping projects across the region.</p>
+                </div>
             </div>
         </div>
     </section>
@@ -755,27 +947,37 @@
     <!-- Core Strengths Section -->
     <section id="strengths" class="strengths">
         <div class="container">
-            <h2 class="section-title">Core Strengths</h2>
-            <div class="strengths-list">
-                <div class="strength-item">
-                    <h3>Steel Structure Expertise</h3>
-                    <p>Expertise in designing and constructing steel structures for mining operations across South Africa.</p>
+            <div class="section-header">
+                <div class="section-badge" style="background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1)); color: var(--primary-gold);">Core Capabilities</div>
+                <h2 class="section-title">What Sets Us Apart</h2>
+                <p class="section-subtitle" style="color: rgba(255, 255, 255, 0.8);">Industry-leading expertise backed by cutting-edge technology and an unwavering commitment to quality</p>
+            </div>
+            
+            <div class="strengths-grid">
+                <div class="strength-card">
+                    <span class="strength-icon">⚙️</span>
+                    <h3>Steel Structure Mastery</h3>
+                    <p>Specialized expertise in designing and constructing sophisticated steel structures for mining operations throughout South Africa, meeting the most demanding specifications.</p>
                 </div>
-                <div class="strength-item">
-                    <h3>Industry Innovation</h3>
-                    <p>Staying ahead of industry trends by evolving skills, technology, and equipment.</p>
+                <div class="strength-card">
+                    <span class="strength-icon">🚀</span>
+                    <h3>Innovation Leadership</h3>
+                    <p>Continuously evolving our skills, technology, and equipment to stay ahead of industry trends and deliver cutting-edge solutions to our clients.</p>
                 </div>
-                <div class="strength-item">
-                    <h3>Skilled Workforce</h3>
-                    <p>Employing over 30 qualified artisans while investing in ongoing skills development.</p>
+                <div class="strength-card">
+                    <span class="strength-icon">👷</span>
+                    <h3>Elite Workforce</h3>
+                    <p>Over 30 qualified Red Seal artisans supported by comprehensive ongoing skills development programs, ensuring the highest standards of craftsmanship.</p>
                 </div>
-                <div class="strength-item">
-                    <h3>Tailored Solutions</h3>
-                    <p>Tailoring steel mining equipment to meet specific client needs.</p>
+                <div class="strength-card">
+                    <span class="strength-icon">🎯</span>
+                    <h3>Custom Engineering</h3>
+                    <p>Bespoke steel mining equipment solutions tailored precisely to meet unique client specifications and operational requirements.</p>
                 </div>
-                <div class="strength-item">
-                    <h3>Dedicated Facility</h3>
-                    <p>Equipped with a dedicated design, drafting, and manufacturing facility.</p>
+                <div class="strength-card">
+                    <span class="strength-icon">🏭</span>
+                    <h3>Advanced Facility</h3>
+                    <p>State-of-the-art design, drafting, and manufacturing facility equipped with modern machinery and technology for precision engineering.</p>
                 </div>
             </div>
         </div>
@@ -784,11 +986,17 @@
     <!-- Leadership Section -->
     <section class="leadership">
         <div class="container">
-            <h2 class="section-title">Leadership</h2>
+            <div class="section-header">
+                <div class="section-badge">Leadership</div>
+                <h2 class="section-title">Visionary Leadership</h2>
+            </div>
+            
             <div class="leader-profile">
-                <h3>Gladwin Rainers</h3>
-                <h4>CEO and Managing Director | Certified Red Seal Boilermaker</h4>
-                <p>Gladwin Rainers, the CEO and Managing Director of Excell, is a Certified Red Seal Boilermaker who draws inspiration from his father's enduring legacy. Witnessing the challenges of high unemployment rates in Kathu, Gladwin was driven to make a meaningful impact by establishing Excell. His vision centers on creating sustainable job opportunities and fostering economic growth within the community. With a commitment to excellence and innovation, Gladwin's leadership reflects his passion for empowering others, contributing to a brighter future for Kathu through skill development and employment initiatives.</p>
+                <div class="leader-content">
+                    <h3>Gladwin Rainers</h3>
+                    <h4>CEO & Managing Director | Certified Red Seal Boilermaker</h4>
+                    <p>Drawing inspiration from his father's enduring legacy, Gladwin Rainers founded Excell Mining with a powerful vision: to combat high unemployment rates in Kathu by creating sustainable job opportunities and fostering economic growth. As a Certified Red Seal Boilermaker, Gladwin brings technical excellence and hands-on expertise to every project. His leadership philosophy centers on empowering communities through skill development and meaningful employment, building not just a successful company, but a brighter future for the Northern Cape region. Under his guidance, Excell Mining has become synonymous with quality, innovation, and social responsibility in the mining services sector.</p>
+                </div>
             </div>
         </div>
     </section>
@@ -796,36 +1004,47 @@
     <!-- Services Section -->
     <section id="services" class="services">
         <div class="container">
-            <h2 class="section-title">Our Services & Products</h2>
-            <p class="section-subtitle">Specialised solutions for mining and construction industries</p>
+            <div class="section-header">
+                <div class="section-badge">Service Portfolio</div>
+                <h2 class="section-title">Comprehensive Mining Solutions</h2>
+                <p class="section-subtitle">End-to-end engineering services designed to maximize operational efficiency and equipment longevity</p>
+            </div>
+            
             <div class="services-grid">
                 <div class="service-card">
-                    <h3>GET Maintenance and Equipment Rebuilds</h3>
-                    <p>Ensuring machinery operates at optimal efficiency by maintaining ground-engaging tools, which influence productivity, fuel efficiency, and equipment longevity.</p>
+                    <span class="service-number">01</span>
+                    <h3>GET Maintenance & Rebuilds</h3>
+                    <p>Expert maintenance and rebuilding of ground-engaging tools to ensure optimal machinery performance, enhanced fuel efficiency, and extended equipment longevity across your operations.</p>
                 </div>
                 <div class="service-card">
-                    <h3>Civil Maintenance Services</h3>
-                    <p>Comprehensive maintenance of infrastructure such as buildings, roads, and bridges, encompassing plumbing, carpentry, painting, landscaping, and more.</p>
+                    <span class="service-number">02</span>
+                    <h3>Civil Maintenance</h3>
+                    <p>Comprehensive infrastructure maintenance including buildings, roads, and bridges. Full-service offerings encompass plumbing, carpentry, painting, landscaping, and general facility upkeep.</p>
                 </div>
                 <div class="service-card">
+                    <span class="service-number">03</span>
                     <h3>Crane Hire Services</h3>
-                    <p>Supplying reliable cranes for diverse lifting and rigging requirements, including truck-mounted options and customised rigging solutions.</p>
+                    <p>Professional crane hire solutions for all lifting and rigging requirements, featuring truck-mounted options and customized rigging solutions backed by certified operators.</p>
                 </div>
                 <div class="service-card">
-                    <h3>Steel Structures Supply and Fabrication</h3>
-                    <p>Designing and producing steel mining equipment and structures to exact client specifications, supported by in-house drafting and manufacturing capabilities.</p>
+                    <span class="service-number">04</span>
+                    <h3>Steel Fabrication</h3>
+                    <p>Precision design and fabrication of steel mining equipment and structures to exact specifications, supported by in-house drafting capabilities and advanced manufacturing technology.</p>
                 </div>
                 <div class="service-card">
-                    <h3>Pipe Supply and Fabrication</h3>
-                    <p>Manufacturing and installing steel and HDPE pipes tailored to precise requirements, handled by skilled artisans.</p>
+                    <span class="service-number">05</span>
+                    <h3>Pipe Fabrication</h3>
+                    <p>Expert manufacturing and installation of steel and HDPE pipes engineered to precise requirements, executed by highly skilled artisans with extensive pipeline experience.</p>
                 </div>
                 <div class="service-card">
+                    <span class="service-number">06</span>
                     <h3>Mechanical Maintenance</h3>
-                    <p>Demonstrating reliability during shutdown periods by swiftly restoring full operational capacity through effective maintenance.</p>
+                    <p>Rapid-response maintenance services specializing in shutdown periods, ensuring swift restoration of full operational capacity with minimal downtime.</p>
                 </div>
                 <div class="service-card">
-                    <h3>Projects</h3>
-                    <p>Managing and delivering projects of varying scales, including piping, steel structures, and construction assignments.</p>
+                    <span class="service-number">07</span>
+                    <h3>Project Management</h3>
+                    <p>Comprehensive project delivery across all scales, from complex piping systems and steel structures to complete construction assignments, managed with precision and expertise.</p>
                 </div>
             </div>
         </div>
@@ -834,42 +1053,51 @@
     <!-- Clients Section -->
     <section id="clients" class="clients">
         <div class="container">
-            <h2 class="section-title">Notable Clients</h2>
-            <p class="section-subtitle">Trusted partnerships with industry leaders</p>
+            <div class="section-header">
+                <div class="section-badge" style="background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1)); color: var(--primary-gold);">Trusted Partnerships</div>
+                <h2 class="section-title">Industry-Leading Clients</h2>
+                <p class="section-subtitle" style="color: rgba(255, 255, 255, 0.8);">Proud to serve South Africa's premier mining and construction companies</p>
+            </div>
+            
             <div class="clients-grid">
                 <div class="client-card"><span>Sishen Iron Ore (Pty) Ltd</span></div>
                 <div class="client-card"><span>Kolomela Iron Ore (Pty) Ltd</span></div>
-                <div class="client-card"><span>WBHO</span></div>
+                <div class="client-card"><span>WBHO Construction</span></div>
                 <div class="client-card"><span>Concor</span></div>
                 <div class="client-card"><span>Assmang Beeshoek</span></div>
             </div>
         </div>
     </section>
 
-    <!-- Unique Advantages Section -->
+    <!-- Advantages Section -->
     <section class="advantages">
         <div class="container">
-            <h2 class="section-title">Unique Advantages</h2>
+            <div class="section-header">
+                <div class="section-badge">Competitive Edge</div>
+                <h2 class="section-title">Why Choose Excell Mining</h2>
+                <p class="section-subtitle">Distinctive advantages that make us the preferred partner for mining services</p>
+            </div>
+            
             <div class="advantages-grid">
                 <div class="advantage-card">
-                    <h3>Personal Touch</h3>
-                    <p>An approachable owner/manager deeply involved in client relations.</p>
+                    <h3>🤝 Personal Commitment</h3>
+                    <p>Direct access to ownership and management ensures responsive, personalized service and genuine partnership in every project we undertake.</p>
                 </div>
                 <div class="advantage-card">
-                    <h3>Innovation Focus</h3>
-                    <p>Commitment to innovation and adoption of emerging technologies.</p>
+                    <h3>💡 Innovation Culture</h3>
+                    <p>Unwavering commitment to technological advancement and adoption of emerging innovations to deliver superior solutions and competitive advantages.</p>
                 </div>
                 <div class="advantage-card">
-                    <h3>Diversified Portfolio</h3>
-                    <p>A wide array of diversified products and services.</p>
+                    <h3>📊 Diverse Capabilities</h3>
+                    <p>Comprehensive portfolio of products and services providing integrated solutions that eliminate the need for multiple contractors.</p>
                 </div>
                 <div class="advantage-card">
-                    <h3>Strong Relationships</h3>
-                    <p>Strong, enduring relationships with clients.</p>
+                    <h3>🏆 Proven Relationships</h3>
+                    <p>Long-standing partnerships with industry leaders built on trust, reliability, and consistent delivery of exceptional results.</p>
                 </div>
                 <div class="advantage-card">
-                    <h3>Equipped Workshop</h3>
-                    <p>Fully equipped workshop staffed by a skilled team, including in-house drafting experts.</p>
+                    <h3>🔧 Complete Facility</h3>
+                    <p>Fully equipped workshop staffed by expert craftsmen and in-house drafting specialists, ensuring quality control from concept to completion.</p>
                 </div>
             </div>
         </div>
@@ -878,27 +1106,32 @@
     <!-- Future Objectives Section -->
     <section class="objectives">
         <div class="container">
-            <h2 class="section-title">Future Objectives</h2>
+            <div class="section-header">
+                <div class="section-badge" style="background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(255, 107, 53, 0.2)); color: var(--secondary-gold); border: 2px solid var(--secondary-gold);">Strategic Vision</div>
+                <h2 class="section-title">Future Growth Roadmap</h2>
+                <p class="section-subtitle" style="color: rgba(255, 255, 255, 0.8);">Ambitious goals driving our expansion and continued excellence</p>
+            </div>
+            
             <div class="objectives-grid">
                 <div class="objective-card">
-                    <h3>Sector Diversification</h3>
-                    <p>Diversify operations into non-mining sectors, such as RandWater.</p>
+                    <h3>🌐 Sector Diversification</h3>
+                    <p>Strategic expansion into non-mining sectors including water infrastructure (RandWater) to broaden our market presence and revenue streams.</p>
                 </div>
                 <div class="objective-card">
-                    <h3>ISO Certifications</h3>
-                    <p>Achieve ISO certifications (ISO9001, ISO45001, ISO3834).</p>
+                    <h3>✅ ISO Excellence</h3>
+                    <p>Pursuit of ISO certifications (ISO9001, ISO45001, ISO3834) to formalize our commitment to quality, safety, and international standards.</p>
                 </div>
                 <div class="objective-card">
-                    <h3>Crane Hire Expansion</h3>
-                    <p>Expand the crane hire division with additional equipment.</p>
+                    <h3>🏗️ Fleet Expansion</h3>
+                    <p>Significant investment in crane hire division with additional modern equipment to meet growing market demand and enhance service capacity.</p>
                 </div>
                 <div class="objective-card">
-                    <h3>Marketing Growth</h3>
-                    <p>Strengthen marketing efforts and broaden visibility.</p>
+                    <h3>📢 Brand Development</h3>
+                    <p>Enhanced marketing initiatives and strengthened brand visibility to establish Excell Mining as the premier choice throughout Southern Africa.</p>
                 </div>
                 <div class="objective-card">
-                    <h3>Private Sector Entry</h3>
-                    <p>Enter the private sector to construct large-scale industrial buildings.</p>
+                    <h3>🏭 Industrial Construction</h3>
+                    <p>Entry into private sector industrial building construction, leveraging our expertise to deliver large-scale facilities and infrastructure projects.</p>
                 </div>
             </div>
         </div>
@@ -909,28 +1142,34 @@
         <div class="footer-content">
             <div class="footer-section">
                 <h3>Excell Mining</h3>
-                <p>"Faith meets opportunity meets success."</p>
+                <p style="font-style: italic; color: var(--primary-gold);">"Faith meets opportunity meets success."</p>
+                <p style="margin-top: 1.5rem;">Premier mining services provider specializing in engineering excellence and community empowerment.</p>
                 <p style="margin-top: 1rem;">Reg No: 2018/244820/07</p>
             </div>
             <div class="footer-section">
-                <h3>Contact Details</h3>
+                <h3>Contact Us</h3>
                 <p>📞 053 050 1124</p>
                 <p><a href="mailto:gladwin.rainers@excellmining.co.za">📧 gladwin.rainers@excellmining.co.za</a></p>
                 <p><a href="mailto:info@excellmining.co.za">📧 info@excellmining.co.za</a></p>
+                <p style="margin-top: 1rem;"><a href="http://www.excell-mining.co.za" target="_blank">🌐 www.excell-mining.co.za</a></p>
             </div>
             <div class="footer-section">
-                <h3>Location</h3>
+                <h3>Our Location</h3>
                 <p>502 Gemsbok Street</p>
                 <p>Deben, 8460</p>
-                <p>Northern Cape, South Africa</p>
+                <p>Northern Cape</p>
+                <p>South Africa</p>
             </div>
             <div class="footer-section">
-                <h3>Website</h3>
-                <p><a href="http://www.excell-mining.co.za" target="_blank">www.excell-mining.co.za</a></p>
+                <h3>Business Hours</h3>
+                <p>Monday - Friday</p>
+                <p>07:00 - 17:00</p>
+                <p style="margin-top: 1rem;">Saturday</p>
+                <p>By Appointment</p>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2025 Excell Mining. All rights reserved.</p>
+            <p>&copy; 2025 Excell Mining (Pty) Ltd. All rights reserved. | Designed for Excellence in Mining Services</p>
         </div>
     </footer>
 
@@ -972,12 +1211,21 @@
                 e.preventDefault();
                 
                 const targetId = this.getAttribute('href');
-                if (targetId === '#') return;
+                if (targetId === '#') {
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                    return;
+                }
                 
                 const targetElement = document.querySelector(targetId);
                 if (targetElement) {
+                    const navHeight = navbar.offsetHeight;
+                    const targetPosition = targetElement.offsetTop - navHeight;
+                    
                     window.scrollTo({
-                        top: targetElement.offsetTop - 80,
+                        top: targetPosition,
                         behavior: 'smooth'
                     });
                     
@@ -985,6 +1233,29 @@
                     navLinks.classList.remove('active');
                 }
             });
+        });
+
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements for animation
+        document.querySelectorAll('.about-card, .strength-card, .service-card, .client-card, .advantage-card, .objective-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
         });
     </script>
 </body>

@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Us - Excell Mining & Construction Services</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        <link rel="icon" href="assets/EXCellLogo.png" type="image/x-icon">
+
     <style>
         * {
             margin: 0;
@@ -11,23 +14,42 @@
             box-sizing: border-box;
         }
 
+        :root {
+            --primary-gold: #D4AF37;
+            --secondary-gold: #FFD700;
+            --dark-blue: #0A1628;
+            --accent-blue: #1E3A5F;
+            --steel-gray: #4A5568;
+            --light-gray: #E2E8F0;
+            --white: #FFFFFF;
+            --mining-orange: #FF6B35;
+        }
+
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            color: #333;
+            color: var(--steel-gray);
             line-height: 1.6;
             overflow-x: hidden;
-            background-color: #f8f9fa;
+            background-color: var(--light-gray);
+            scroll-behavior: smooth;
         }
 
         /* Navigation */
         nav {
-            background: #1a1a2e;
-            padding: 1.2rem 0;
+            background: linear-gradient(135deg, rgba(10, 22, 40, 0.98) 0%, rgba(30, 58, 95, 0.98) 100%);
+            padding: 1rem 0;
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            transition: all 0.4s ease;
+        }
+
+        nav.scrolled {
+            padding: 0.6rem 0;
+            background: linear-gradient(135deg, rgba(10, 22, 40, 1) 0%, rgba(30, 58, 95, 1) 100%);
         }
 
         .nav-container {
@@ -41,70 +63,108 @@
 
         .logo {
             font-size: 1.8rem;
-            font-weight: bold;
-            color: #00a8cc;
-            text-decoration: none;
+            font-weight: 900;
+            color: var(--primary-gold);
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: 3px;
             transition: all 0.3s;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            position: relative;
+            text-decoration: none;
+        }
+
+        .logo::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-gold), var(--mining-orange));
+            transition: width 0.4s ease;
+        }
+
+        .logo:hover::after {
+            width: 100%;
         }
 
         .logo:hover {
-            color: #ffd700;
             transform: scale(1.05);
+            color: var(--secondary-gold);
         }
 
         .nav-links {
             display: flex;
-            gap: 2.5rem;
+            gap: 3rem;
             list-style: none;
         }
 
         .nav-links a {
-            color: #fff;
+            color: var(--white);
             text-decoration: none;
-            font-weight: 500;
+            font-weight: 600;
             transition: all 0.3s;
             font-size: 0.95rem;
             position: relative;
             padding: 0.5rem 0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
-        .nav-links a::after {
+        .nav-links a::before {
             content: '';
             position: absolute;
             width: 0;
             height: 2px;
             bottom: 0;
-            left: 0;
-            background-color: #00a8cc;
-            transition: width 0.3s;
+            left: 50%;
+            background: linear-gradient(90deg, var(--primary-gold), var(--mining-orange));
+            transition: all 0.4s ease;
+            transform: translateX(-50%);
         }
 
         .nav-links a:hover {
-            color: #00a8cc;
+            color: var(--primary-gold);
         }
 
-        .nav-links a:hover::after {
+        .nav-links a:hover::before {
             width: 100%;
         }
 
         .nav-links a.active {
-            color: #00a8cc;
+            color: var(--primary-gold);
         }
 
-        .nav-links a.active::after {
+        .nav-links a.active::before {
             width: 100%;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.8rem;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .mobile-menu-btn:hover {
+            transform: scale(1.1);
+            color: var(--primary-gold);
         }
 
         /* Page Header */
         .page-header {
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-            padding: 160px 2rem 80px;
+            background: linear-gradient(135deg, var(--dark-blue) 0%, var(--accent-blue) 100%);
+            padding: 160px 2rem 100px;
             text-align: center;
             color: white;
             position: relative;
             overflow: hidden;
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
         }
 
         .page-header::before {
@@ -114,7 +174,25 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><rect width="2" height="2" fill="white" opacity="0.1"/></svg>');
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(212, 175, 55, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255, 107, 53, 0.1) 0%, transparent 50%);
+            animation: pulse 8s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 0.8; }
+        }
+
+        .page-header::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><defs><pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M 20 0 L 0 0 0 20" fill="none" stroke="rgba(255,255,255,0.03)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
             opacity: 0.3;
         }
 
@@ -123,40 +201,55 @@
             margin: 0 auto;
             position: relative;
             z-index: 1;
+            text-align: center;
         }
 
         .page-header h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            font-weight: 800;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-            color: #00a8cc;
+            font-size: 4.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 900;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.5);
+            background: linear-gradient(135deg, var(--primary-gold), var(--secondary-gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fadeInUp 1s ease-out;
+            line-height: 1.2;
         }
 
         .page-header p {
-            font-size: 1.2rem;
-            max-width: 800px;
-            margin: 0 auto;
-            line-height: 1.8;
-            color: #e0e0e0;
+            font-size: 1.4rem;
+            max-width: 900px;
+            margin: 0 auto 3rem;
+            line-height: 1.9;
+            animation: fadeInUp 1s ease-out 0.4s both;
+            color: rgba(255, 255, 255, 0.9);
+            font-style: italic;
+            color: var(--secondary-gold);
         }
 
         /* Breadcrumb */
         .breadcrumb {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 1rem 2rem;
-            background: transparent;
+            padding: 1.5rem 2rem;
+            background: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
         }
 
         .breadcrumb a {
-            color: #00a8cc;
+            color: var(--primary-gold);
             text-decoration: none;
             transition: color 0.3s;
+            font-weight: 500;
         }
 
         .breadcrumb a:hover {
-            color: #ffd700;
+            color: var(--mining-orange);
+        }
+
+        .breadcrumb span {
+            color: var(--steel-gray);
         }
 
         /* Main Content */
@@ -167,46 +260,54 @@
         }
 
         .section {
-            padding: 80px 0;
+            padding: 100px 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary-gold), var(--mining-orange));
+            color: var(--white);
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
         }
 
         .section-title {
-            font-size: 2.5rem;
-            color: #1a1a2e;
+            font-size: 3rem;
+            color: var(--dark-blue);
             margin-bottom: 1rem;
-            font-weight: 700;
+            font-weight: 900;
             position: relative;
-            padding-bottom: 1rem;
+            display: inline-block;
         }
 
         .section-title::after {
             content: '';
             position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 80px;
-            height: 3px;
-            background: #00a8cc;
-        }
-
-        .section-title.center {
-            text-align: center;
-        }
-
-        .section-title.center::after {
+            bottom: -10px;
             left: 50%;
             transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-gold), var(--mining-orange));
+            border-radius: 2px;
         }
 
         .section-subtitle {
-            color: #666;
-            font-size: 1.1rem;
-            margin-bottom: 3rem;
-            max-width: 800px;
-        }
-
-        .section-subtitle.center {
             text-align: center;
+            color: var(--steel-gray);
+            font-size: 1.2rem;
+            margin-bottom: 3rem;
+            max-width: 700px;
             margin-left: auto;
             margin-right: auto;
         }
@@ -234,6 +335,7 @@
             overflow: hidden;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
             transition: transform 0.3s;
+            position: relative;
         }
 
         .about-image:hover {
@@ -246,11 +348,46 @@
             display: block;
         }
 
+        .image-placeholder {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(135deg, var(--dark-blue) 0%, var(--accent-blue) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 1.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .image-placeholder::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="60" height="60"><defs><pattern id="hexagons" width="50" height="43.4" patternUnits="userSpaceOnUse" patternTransform="scale(2)"><polygon points="24.8,22 37.3,29.2 37.3,43.7 24.8,50.9 12.3,43.7 12.3,29.2" fill="none" stroke="rgba(212,175,55,0.1)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23hexagons)"/></svg>');
+        }
+
         /* Stats Section */
         .stats {
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-            color: white;
-            padding: 80px 0;
+            background: linear-gradient(135deg, var(--dark-blue) 0%, var(--accent-blue) 100%);
+            color: var(--white);
+            padding: 100px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stats::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><defs><pattern id="smallGrid" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M 20 0 L 0 0 0 20" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23smallGrid)"/></svg>');
         }
 
         .stats-grid {
@@ -258,11 +395,33 @@
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 2rem;
             text-align: center;
+            position: relative;
+            z-index: 1;
         }
 
         .stat-item {
             padding: 2rem 1rem;
             transition: transform 0.3s;
+            position: relative;
+        }
+
+        .stat-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            transform: scale(0.9);
+            transition: all 0.3s;
+            opacity: 0;
+        }
+
+        .stat-item:hover::before {
+            opacity: 1;
+            transform: scale(1);
         }
 
         .stat-item:hover {
@@ -272,13 +431,16 @@
         .stat-number {
             font-size: 3rem;
             font-weight: 800;
-            color: #00a8cc;
+            color: var(--primary-gold);
             margin-bottom: 0.5rem;
+            display: block;
         }
 
         .stat-label {
             font-size: 1.1rem;
             color: #e0e0e0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         /* Values Section */
@@ -289,51 +451,70 @@
         }
 
         .value-card {
-            background: white;
-            padding: 2.5rem 2rem;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            border-top: 4px solid #00a8cc;
-            transition: all 0.3s;
+            background: var(--white);
+            padding: 3rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            border-top: 4px solid var(--primary-gold);
             text-align: center;
+        }
+
+        .value-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.05), rgba(255, 107, 53, 0.05));
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .value-card:hover::before {
+            opacity: 1;
         }
 
         .value-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
         }
 
         .value-icon {
             font-size: 3rem;
-            color: #00a8cc;
+            color: var(--primary-gold);
             margin-bottom: 1.5rem;
+            display: block;
         }
 
         .value-card h3 {
-            color: #1a1a2e;
+            color: var(--dark-blue);
             margin-bottom: 1rem;
-            font-size: 1.4rem;
+            font-size: 1.5rem;
+            font-weight: 700;
         }
 
         .value-card p {
-            color: #666;
-            line-height: 1.7;
+            color: var(--steel-gray);
+            line-height: 1.8;
         }
 
         /* Leadership Section */
         .leadership {
-            background: #f5f5f5;
+            background: var(--light-gray);
         }
 
         .leader-profile {
-            max-width: 900px;
+            max-width: 1000px;
             margin: 3rem auto;
-            background: white;
-            padding: 3rem;
-            border-radius: 10px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-            border-top: 5px solid #00a8cc;
-            transition: all 0.3s;
+            background: linear-gradient(135deg, var(--dark-blue), var(--accent-blue));
+            padding: 4rem;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+            color: var(--white);
             position: relative;
             overflow: hidden;
         }
@@ -341,23 +522,16 @@
         .leader-profile::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 5px;
-            background: linear-gradient(90deg, #00a8cc, #ffd700);
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 0.5s;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
         }
 
-        .leader-profile:hover::before {
-            transform: scaleX(1);
-        }
-
-        .leader-profile:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        .leader-content {
+            position: relative;
+            z-index: 1;
         }
 
         .leader-header {
@@ -372,7 +546,9 @@
             border-radius: 50%;
             overflow: hidden;
             margin-right: 2rem;
-            border: 4px solid #00a8cc;
+            border: 4px solid var(--primary-gold);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            flex-shrink: 0;
         }
 
         .leader-image img {
@@ -382,28 +558,91 @@
         }
 
         .leader-info h3 {
-            color: #00a8cc;
-            font-size: 2rem;
+            color: var(--primary-gold);
+            font-size: 2.5rem;
             margin-bottom: 0.5rem;
+            font-weight: 900;
         }
 
         .leader-info h4 {
-            color: #666;
+            color: rgba(255, 255, 255, 0.8);
             margin-bottom: 0.5rem;
-            font-size: 1.1rem;
+            font-size: 1.2rem;
+            font-weight: 400;
         }
 
         .leader-info p {
-            color: #888;
+            color: rgba(255, 255, 255, 0.9);
             font-style: italic;
         }
 
         .leader-bio {
-            line-height: 1.8;
+            line-height: 1.9;
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.9);
         }
 
         .leader-bio p {
             margin-bottom: 1.5rem;
+        }
+
+        /* Team Section */
+        .team {
+            background: var(--dark-blue);
+            color: var(--white);
+        }
+
+        .team .section-title {
+            color: var(--white);
+        }
+
+        .team .section-title::after {
+            background: var(--secondary-gold);
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .team-member {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.3s;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(212, 175, 55, 0.3);
+            padding: 2rem;
+        }
+
+        .team-member:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            border-color: var(--primary-gold);
+        }
+
+        .member-icon {
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-gold);
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .member-info h3 {
+            color: var(--primary-gold);
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+        }
+
+        .member-info p {
+            color: #e0e0e0;
+            font-size: 0.9rem;
         }
 
         /* Timeline Section */
@@ -420,7 +659,7 @@
             bottom: 0;
             left: 50%;
             width: 4px;
-            background: #00a8cc;
+            background: var(--primary-gold);
             transform: translateX(-50%);
         }
 
@@ -428,6 +667,14 @@
             padding: 2rem 0;
             position: relative;
             width: 50%;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+        }
+
+        .timeline-item.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .timeline-item:nth-child(odd) {
@@ -442,39 +689,40 @@
         }
 
         .timeline-content {
-            background: white;
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            border-left: 4px solid #00a8cc;
+            background: var(--white);
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            border-left: 4px solid var(--primary-gold);
             transition: all 0.3s;
         }
 
         .timeline-item:nth-child(odd) .timeline-content {
             border-left: none;
-            border-right: 4px solid #00a8cc;
+            border-right: 4px solid var(--primary-gold);
         }
 
         .timeline-content:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
         }
 
         .timeline-year {
             font-size: 1.5rem;
             font-weight: 700;
-            color: #00a8cc;
+            color: var(--primary-gold);
             margin-bottom: 0.5rem;
         }
 
         .timeline-title {
             font-size: 1.3rem;
-            color: #1a1a2e;
+            color: var(--dark-blue);
             margin-bottom: 1rem;
+            font-weight: 700;
         }
 
         .timeline-desc {
-            color: #666;
+            color: var(--steel-gray);
             line-height: 1.7;
         }
 
@@ -484,10 +732,11 @@
             top: 50%;
             width: 20px;
             height: 20px;
-            background: #00a8cc;
-            border: 4px solid white;
+            background: var(--primary-gold);
+            border: 4px solid var(--white);
             border-radius: 50%;
             transform: translateY(-50%);
+            box-shadow: 0 0 0 3px var(--primary-gold);
         }
 
         .timeline-item:nth-child(odd)::after {
@@ -500,16 +749,30 @@
 
         /* CTA Section */
         .cta-section {
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-            color: white;
+            background: linear-gradient(135deg, var(--dark-blue) 0%, var(--accent-blue) 100%);
+            color: var(--white);
             text-align: center;
-            padding: 80px 0;
+            padding: 100px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><defs><pattern id="circles" width="30" height="30" patternUnits="userSpaceOnUse"><circle cx="15" cy="15" r="2" fill="rgba(212,175,55,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23circles)"/></svg>');
         }
 
         .cta-section h2 {
             font-size: 2.5rem;
             margin-bottom: 1rem;
-            color: #00a8cc;
+            color: var(--primary-gold);
+            position: relative;
+            z-index: 1;
         }
 
         .cta-section p {
@@ -517,80 +780,170 @@
             max-width: 700px;
             margin: 0 auto 2rem;
             color: #e0e0e0;
+            position: relative;
+            z-index: 1;
         }
 
         .cta-button {
             display: inline-block;
-            background: #00a8cc;
-            color: white;
-            padding: 1rem 2.5rem;
+            background: linear-gradient(135deg, var(--primary-gold), var(--mining-orange));
+            color: var(--white);
+            padding: 1.2rem 3rem;
             text-decoration: none;
-            border-radius: 5px;
-            font-weight: bold;
-            transition: all 0.3s;
-            border: 2px solid #00a8cc;
-            font-size: 1.1rem;
+            border-radius: 50px;
+            font-weight: 700;
+            transition: all 0.4s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.95rem;
+            position: relative;
+            overflow: hidden;
+            border: 2px solid transparent;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--mining-orange), var(--primary-gold));
+            transition: left 0.4s ease;
+            z-index: -1;
+        }
+
+        .cta-button:hover::before {
+            left: 0;
         }
 
         .cta-button:hover {
-            background: transparent;
-            color: #00a8cc;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0,168,204,0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.4);
         }
 
         /* Footer */
         footer {
-            background: #0d0d1a;
-            color: white;
-            padding: 3rem 0 1.5rem;
+            background: linear-gradient(135deg, #000000 0%, var(--dark-blue) 100%);
+            color: var(--white);
+            padding: 4rem 2rem 2rem;
+            position: relative;
         }
 
         .footer-content {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 2rem;
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 3rem;
-            margin-bottom: 2rem;
+            margin-bottom: 3rem;
         }
 
         .footer-section h3 {
-            color: #00a8cc;
-            margin-bottom: 1rem;
-            position: relative;
-            padding-bottom: 0.5rem;
-        }
-
-        .footer-section h3::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 40px;
-            height: 2px;
-            background: #ffd700;
+            color: var(--primary-gold);
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .footer-section p, .footer-section a {
-            color: #ccc;
+            color: rgba(255, 255, 255, 0.7);
             text-decoration: none;
             display: block;
-            margin-bottom: 0.5rem;
-            transition: color 0.3s;
+            margin-bottom: 0.8rem;
+            transition: all 0.3s;
         }
 
         .footer-section a:hover {
-            color: #00a8cc;
-            padding-left: 5px;
+            color: var(--primary-gold);
+            padding-left: 8px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover {
+            background: var(--primary-gold);
+            transform: translateY(-3px);
+            padding-left: 0;
         }
 
         .footer-bottom {
             text-align: center;
             padding-top: 2rem;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: #999;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, var(--primary-gold), var(--mining-orange));
+            color: var(--white);
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 1.5rem;
+            box-shadow: 0 5px 20px rgba(212, 175, 55, 0.4);
+            transition: all 0.3s;
+            opacity: 0;
+            visibility: hidden;
+            z-index: 999;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.5);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         /* Responsive Design */
@@ -631,20 +984,10 @@
             }
             
             .timeline-content {
-                border-left: 4px solid #00a8cc !important;
+                border-left: 4px solid var(--primary-gold) !important;
                 border-right: none !important;
             }
-        }
 
-        @media (max-width: 768px) {
-            .page-header h1 {
-                font-size: 2.5rem;
-            }
-            
-            .section-title {
-                font-size: 2rem;
-            }
-            
             .leader-header {
                 flex-direction: column;
                 text-align: center;
@@ -654,15 +997,46 @@
                 margin-right: 0;
                 margin-bottom: 1.5rem;
             }
-            
-            .nav-links {
-                gap: 1rem;
-            }
         }
 
-        @media (max-width: 576px) {
+        @media (max-width: 768px) {
+            .page-header h1 {
+                font-size: 2.8rem;
+            }
+            
+            .section-title {
+                font-size: 2.2rem;
+            }
+            
             .nav-links {
                 display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: linear-gradient(135deg, rgba(10, 22, 40, 0.98) 0%, rgba(30, 58, 95, 0.98) 100%);
+                flex-direction: column;
+                padding: 1rem 0;
+                gap: 0;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links li {
+                width: 100%;
+                text-align: center;
+            }
+
+            .nav-links a {
+                display: block;
+                padding: 1rem;
+            }
+
+            .mobile-menu-btn {
+                display: block;
             }
             
             .stats-grid {
@@ -672,14 +1046,25 @@
             .values-grid {
                 grid-template-columns: 1fr;
             }
+            
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
     <!-- Navigation -->
-    <nav>
+    <nav id="navbar">
         <div class="nav-container">
             <a href="index.html" class="logo">EXCELL MINING</a>
+            <button class="mobile-menu-btn">☰</button>
             <ul class="nav-links">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="about.html" class="active">About</a></li>
@@ -694,7 +1079,7 @@
     <section class="page-header">
         <div class="page-header-content">
             <h1>About Excell Mining</h1>
-            <p>Our journey from a small mining services firm to a leading provider in the Northern Cape</p>
+            <p>"Faith meets opportunity meets success."</p>
         </div>
     </section>
 
@@ -706,17 +1091,21 @@
     <!-- About Intro Section -->
     <section class="section">
         <div class="container">
+            <div class="section-header">
+                <div class="section-badge">Our Story</div>
+                <h2 class="section-title">Engineering Excellence in Mining</h2>
+                <p class="section-subtitle">Building partnerships, delivering solutions, and empowering communities across South Africa's mining sector</p>
+            </div>
+            
             <div class="about-intro">
                 <div class="about-text">
-                    <h2 class="section-title">Our Story</h2>
                     <p>In 2015, Gladwin Rainers, a certified boilermaker, established a small mining services firm in Kathu, Northern Cape, near Kumba Iron Ore's Sishen Mine. With a vision to create sustainable job opportunities and foster economic growth in the community, Excell Mining began its journey.</p>
                     <p>Today, Excell Mining employs around 72 individuals and aspires to become the foremost mining services provider in the region. The company specialises in services like bucket refurbishment, maintenance, straps, and steel fabrication.</p>
                     <p>Rapid growth over the last three years has seen its workforce grow from 25 in 2019 to its current size. Most employees are locals, including skilled artisans, administrative staff, and safety personnel.</p>
                 </div>
                 <div class="about-image">
-                    <!-- Placeholder for company image -->
-                    <div style="width:100%; height:400px; background:linear-gradient(135deg, #1a1a2e 0%, #00a8cc 100%); display:flex; align-items:center; justify-content:center; color:white; font-size:1.5rem;">
-                        Excell Mining Operations
+                    <div class="image-placeholder">
+                        <i class="fas fa-hard-hat"></i>
                     </div>
                 </div>
             </div>
@@ -728,19 +1117,19 @@
         <div class="container">
             <div class="stats-grid">
                 <div class="stat-item">
-                    <div class="stat-number">72+</div>
-                    <div class="stat-label">Employees</div>
+                    <span class="stat-number">72+</span>
+                    <div class="stat-label">Skilled Employees</div>
                 </div>
                 <div class="stat-item">
-                    <div class="stat-number">8+</div>
-                    <div class="stat-label">Years Experience</div>
+                    <span class="stat-number">9+</span>
+                    <div class="stat-label">Years Excellence</div>
                 </div>
                 <div class="stat-item">
-                    <div class="stat-number">30+</div>
+                    <span class="stat-number">30+</span>
                     <div class="stat-label">Qualified Artisans</div>
                 </div>
                 <div class="stat-item">
-                    <div class="stat-number">100%</div>
+                    <span class="stat-number">100%</span>
                     <div class="stat-label">Client Satisfaction</div>
                 </div>
             </div>
@@ -750,37 +1139,40 @@
     <!-- Values Section -->
     <section class="section">
         <div class="container">
-            <h2 class="section-title center">Our Values</h2>
-            <p class="section-subtitle center">The principles that guide our operations and define our company culture</p>
+            <div class="section-header">
+                <div class="section-badge">Our Values</div>
+                <h2 class="section-title">What Guides Our Work</h2>
+                <p class="section-subtitle">The principles that drive our operations and define our company culture</p>
+            </div>
             
             <div class="values-grid">
                 <div class="value-card">
-                    <div class="value-icon">✓</div>
+                    <div class="value-icon"><i class="fas fa-award"></i></div>
                     <h3>Excellence</h3>
                     <p>We strive for the highest quality in all our services, from steel fabrication to equipment maintenance, ensuring client satisfaction and operational efficiency.</p>
                 </div>
                 <div class="value-card">
-                    <div class="value-icon">👥</div>
+                    <div class="value-icon"><i class="fas fa-users"></i></div>
                     <h3>Community</h3>
                     <p>We're committed to creating sustainable job opportunities and fostering economic growth within the Kathu community and surrounding areas.</p>
                 </div>
                 <div class="value-card">
-                    <div class="value-icon">⚙️</div>
+                    <div class="value-icon"><i class="fas fa-lightbulb"></i></div>
                     <h3>Innovation</h3>
                     <p>We stay ahead of industry trends by evolving our skills, technology, and equipment to deliver cutting-edge solutions to our clients.</p>
                 </div>
                 <div class="value-card">
-                    <div class="value-icon">🤝</div>
+                    <div class="value-icon"><i class="fas fa-handshake"></i></div>
                     <h3>Partnership</h3>
                     <p>We build strong, enduring relationships with our clients, working collaboratively to achieve their operational goals.</p>
                 </div>
                 <div class="value-card">
-                    <div class="value-icon">🛡️</div>
+                    <div class="value-icon"><i class="fas fa-shield-alt"></i></div>
                     <h3>Safety</h3>
                     <p>We prioritize the well-being of our employees and clients, maintaining the highest safety standards across all operations.</p>
                 </div>
                 <div class="value-card">
-                    <div class="value-icon">📈</div>
+                    <div class="value-icon"><i class="fas fa-chart-line"></i></div>
                     <h3>Growth</h3>
                     <p>We continuously invest in skills development and equipment to expand our capabilities and service offerings.</p>
                 </div>
@@ -791,27 +1183,79 @@
     <!-- Leadership Section -->
     <section class="section leadership">
         <div class="container">
-            <h2 class="section-title center">Our Leadership</h2>
-            <p class="section-subtitle center">Meet the visionary behind Excell Mining's success</p>
+            <div class="section-header">
+                <div class="section-badge">Leadership</div>
+                <h2 class="section-title">Visionary Leadership</h2>
+            </div>
             
             <div class="leader-profile">
-                <div class="leader-header">
-                    <div class="leader-image">
-                        <!-- Placeholder for leader image -->
-                        <div style="width:100%; height:100%; background:linear-gradient(135deg, #00a8cc 0%, #1a1a2e 100%); display:flex; align-items:center; justify-content:center; color:white; font-size:3rem;">
-                            GR
+                <div class="leader-content">
+                    <div class="leader-header">
+                        <div class="leader-image">
+                            <div style="width:100%; height:100%; background:linear-gradient(135deg, var(--primary-gold) 0%, var(--mining-orange) 100%); display:flex; align-items:center; justify-content:center; color:var(--white); font-size:3rem;">
+                                <i class="fas fa-user-tie"></i>
+                            </div>
+                        </div>
+                        <div class="leader-info">
+                            <h3>Gladwin Rainers</h3>
+                            <h4>CEO & Managing Director | Certified Red Seal Boilermaker</h4>
+                            <p>Founder of Excell Mining</p>
                         </div>
                     </div>
-                    <div class="leader-info">
-                        <h3>Gladwin Rainers</h3>
-                        <h4>CEO and Managing Director</h4>
-                        <p>Certified Red Seal Boilermaker</p>
+                    <div class="leader-bio">
+                        <p>Drawing inspiration from his father's enduring legacy, Gladwin Rainers founded Excell Mining with a powerful vision: to combat high unemployment rates in Kathu by creating sustainable job opportunities and fostering economic growth. As a Certified Red Seal Boilermaker, Gladwin brings technical excellence and hands-on expertise to every project.</p>
+                        <p>His leadership philosophy centers on empowering communities through skill development and meaningful employment, building not just a successful company, but a brighter future for the Northern Cape region. Under his guidance, Excell Mining has become synonymous with quality, innovation, and social responsibility in the mining services sector.</p>
                     </div>
                 </div>
-                <div class="leader-bio">
-                    <p>Gladwin Rainers, the CEO and Managing Director of Excell, is a Certified Red Seal Boilermaker who draws inspiration from his father's enduring legacy. Witnessing the challenges of high unemployment rates in Kathu, Gladwin was driven to make a meaningful impact by establishing Excell.</p>
-                    <p>His vision centers on creating sustainable job opportunities and fostering economic growth within the community. With a commitment to excellence and innovation, Gladwin's leadership reflects his passion for empowering others, contributing to a brighter future for Kathu through skill development and employment initiatives.</p>
-                    <p>Under his guidance, Excell Mining has grown from a small startup to a significant employer in the region, with a reputation for quality workmanship and reliable service.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="section team">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge" style="background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1)); color: var(--primary-gold);">Our Team</div>
+                <h2 class="section-title">Meet Our Experts</h2>
+                <p class="section-subtitle" style="color: rgba(255, 255, 255, 0.8);">The dedicated professionals behind our success</p>
+            </div>
+            
+            <div class="team-grid">
+                <div class="team-member">
+                    <div class="member-icon">
+                        <i class="fas fa-user-hard-hat"></i>
+                    </div>
+                    <div class="member-info">
+                        <h3>Operations Team</h3>
+                        <p>30+ Qualified Artisans</p>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <div class="member-icon">
+                        <i class="fas fa-user-cog"></i>
+                    </div>
+                    <div class="member-info">
+                        <h3>Technical Specialists</h3>
+                        <p>Engineering & Fabrication Experts</p>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <div class="member-icon">
+                        <i class="fas fa-user-shield"></i>
+                    </div>
+                    <div class="member-info">
+                        <h3>Safety Officers</h3>
+                        <p>Ensuring Workplace Safety</p>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <div class="member-icon">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <div class="member-info">
+                        <h3>Administrative Staff</h3>
+                        <p>Supporting Operations</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -820,8 +1264,11 @@
     <!-- Timeline Section -->
     <section class="section">
         <div class="container">
-            <h2 class="section-title center">Our Journey</h2>
-            <p class="section-subtitle center">Key milestones in Excell Mining's growth and development</p>
+            <div class="section-header">
+                <div class="section-badge">Our Journey</div>
+                <h2 class="section-title">Company Timeline</h2>
+                <p class="section-subtitle">Key milestones in Excell Mining's growth and development</p>
+            </div>
             
             <div class="timeline">
                 <div class="timeline-item">
@@ -877,20 +1324,23 @@
         <div class="footer-content">
             <div class="footer-section">
                 <h3>Excell Mining</h3>
-                <p>"Faith meets opportunity meets success."</p>
+                <p style="font-style: italic; color: var(--primary-gold);">"Faith meets opportunity meets success."</p>
+                <p style="margin-top: 1.5rem;">Premier mining services provider specializing in engineering excellence and community empowerment.</p>
                 <p style="margin-top: 1rem;">Reg No: 2018/244820/07</p>
             </div>
             <div class="footer-section">
-                <h3>Contact Details</h3>
-                <p>📞 053 050 1124</p>
-                <p><a href="mailto:gladwin.rainers@excellmining.co.za">📧 gladwin.rainers@excellmining.co.za</a></p>
-                <p><a href="mailto:info@excellmining.co.za">📧 info@excellmining.co.za</a></p>
+                <h3>Contact Us</h3>
+                <p><i class="fas fa-phone"></i> 053 050 1124</p>
+                <p><a href="mailto:gladwin.rainers@excellmining.co.za"><i class="fas fa-envelope"></i> gladwin.rainers@excellmining.co.za</a></p>
+                <p><a href="mailto:info@excellmining.co.za"><i class="fas fa-envelope"></i> info@excellmining.co.za</a></p>
+                <p style="margin-top: 1rem;"><a href="http://www.excell-mining.co.za" target="_blank"><i class="fas fa-globe"></i> www.excell-mining.co.za</a></p>
             </div>
             <div class="footer-section">
-                <h3>Location</h3>
-                <p>502 Gemsbok Street</p>
+                <h3>Our Location</h3>
+                <p><i class="fas fa-map-marker-alt"></i> 502 Gemsbok Street</p>
                 <p>Deben, 8460</p>
-                <p>Northern Cape, South Africa</p>
+                <p>Northern Cape</p>
+                <p>South Africa</p>
             </div>
             <div class="footer-section">
                 <h3>Quick Links</h3>
@@ -898,11 +1348,126 @@
                 <p><a href="about.html">About Us</a></p>
                 <p><a href="services.html">Services</a></p>
                 <p><a href="contact.html">Contact</a></p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2025 Excell Mining. All rights reserved.</p>
+            <p>&copy; 2025 Excell Mining (Pty) Ltd. All rights reserved. | Designed for Excellence in Mining Services</p>
         </div>
     </footer>
+
+    <!-- Back to Top Button -->
+    <a href="#" class="back-to-top">
+        <i class="fas fa-chevron-up"></i>
+    </a>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Back to top button
+        const backToTopButton = document.querySelector('.back-to-top');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTopButton.classList.add('visible');
+            } else {
+                backToTopButton.classList.remove('visible');
+            }
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') {
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                    return;
+                }
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    const navHeight = navbar.offsetHeight;
+                    const targetPosition = targetElement.offsetTop - navHeight;
+                    
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    navLinks.classList.remove('active');
+                }
+            });
+        });
+
+        // Timeline animation
+        const timelineItems = document.querySelectorAll('.timeline-item');
+        
+        const timelineObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.3 });
+        
+        timelineItems.forEach(item => {
+            timelineObserver.observe(item);
+        });
+
+        // Stats counter animation
+        const statNumbers = document.querySelectorAll('.stat-number');
+        const statsSection = document.querySelector('.stats');
+        
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    statNumbers.forEach(stat => {
+                        const target = parseInt(stat.textContent);
+                        let current = 0;
+                        const increment = target / 50;
+                        
+                        const timer = setInterval(() => {
+                            current += increment;
+                            if (current >= target) {
+                                current = target;
+                                clearInterval(timer);
+                            }
+                            stat.textContent = Math.ceil(current) + (stat.textContent.includes('%') ? '%' : '+');
+                        }, 30);
+                    });
+                    
+                    statsObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+        
+        statsObserver.observe(statsSection);
+    </script>
 </body>
 </html>

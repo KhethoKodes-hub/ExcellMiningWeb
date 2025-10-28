@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Our Services - Excell Mining & Construction Services</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
             margin: 0;
@@ -11,23 +12,42 @@
             box-sizing: border-box;
         }
 
+        :root {
+            --primary-gold: #D4AF37;
+            --secondary-gold: #FFD700;
+            --dark-blue: #0A1628;
+            --accent-blue: #1E3A5F;
+            --steel-gray: #4A5568;
+            --light-gray: #E2E8F0;
+            --white: #FFFFFF;
+            --mining-orange: #FF6B35;
+        }
+
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            color: #333;
+            color: var(--steel-gray);
             line-height: 1.6;
             overflow-x: hidden;
-            background-color: #f8f9fa;
+            background-color: var(--light-gray);
+            scroll-behavior: smooth;
         }
 
         /* Navigation */
         nav {
-            background: #1a1a2e;
-            padding: 1.2rem 0;
+            background: linear-gradient(135deg, rgba(10, 22, 40, 0.98) 0%, rgba(30, 58, 95, 0.98) 100%);
+            padding: 1rem 0;
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            transition: all 0.4s ease;
+        }
+
+        nav.scrolled {
+            padding: 0.6rem 0;
+            background: linear-gradient(135deg, rgba(10, 22, 40, 1) 0%, rgba(30, 58, 95, 1) 100%);
         }
 
         .nav-container {
@@ -41,70 +61,108 @@
 
         .logo {
             font-size: 1.8rem;
-            font-weight: bold;
-            color: #00a8cc;
-            text-decoration: none;
+            font-weight: 900;
+            color: var(--primary-gold);
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: 3px;
             transition: all 0.3s;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            position: relative;
+            text-decoration: none;
+        }
+
+        .logo::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-gold), var(--mining-orange));
+            transition: width 0.4s ease;
+        }
+
+        .logo:hover::after {
+            width: 100%;
         }
 
         .logo:hover {
-            color: #ffd700;
             transform: scale(1.05);
+            color: var(--secondary-gold);
         }
 
         .nav-links {
             display: flex;
-            gap: 2.5rem;
+            gap: 3rem;
             list-style: none;
         }
 
         .nav-links a {
-            color: #fff;
+            color: var(--white);
             text-decoration: none;
-            font-weight: 500;
+            font-weight: 600;
             transition: all 0.3s;
             font-size: 0.95rem;
             position: relative;
             padding: 0.5rem 0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
-        .nav-links a::after {
+        .nav-links a::before {
             content: '';
             position: absolute;
             width: 0;
             height: 2px;
             bottom: 0;
-            left: 0;
-            background-color: #00a8cc;
-            transition: width 0.3s;
+            left: 50%;
+            background: linear-gradient(90deg, var(--primary-gold), var(--mining-orange));
+            transition: all 0.4s ease;
+            transform: translateX(-50%);
         }
 
         .nav-links a:hover {
-            color: #00a8cc;
+            color: var(--primary-gold);
         }
 
-        .nav-links a:hover::after {
+        .nav-links a:hover::before {
             width: 100%;
         }
 
         .nav-links a.active {
-            color: #00a8cc;
+            color: var(--primary-gold);
         }
 
-        .nav-links a.active::after {
+        .nav-links a.active::before {
             width: 100%;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.8rem;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .mobile-menu-btn:hover {
+            transform: scale(1.1);
+            color: var(--primary-gold);
         }
 
         /* Page Header */
         .page-header {
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-            padding: 160px 2rem 80px;
+            background: linear-gradient(135deg, var(--dark-blue) 0%, var(--accent-blue) 100%);
+            padding: 160px 2rem 100px;
             text-align: center;
             color: white;
             position: relative;
             overflow: hidden;
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
         }
 
         .page-header::before {
@@ -114,7 +172,25 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><rect width="2" height="2" fill="white" opacity="0.1"/></svg>');
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(212, 175, 55, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255, 107, 53, 0.1) 0%, transparent 50%);
+            animation: pulse 8s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 0.8; }
+        }
+
+        .page-header::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><defs><pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M 20 0 L 0 0 0 20" fill="none" stroke="rgba(255,255,255,0.03)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
             opacity: 0.3;
         }
 
@@ -123,40 +199,55 @@
             margin: 0 auto;
             position: relative;
             z-index: 1;
+            text-align: center;
         }
 
         .page-header h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            font-weight: 800;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-            color: #00a8cc;
+            font-size: 4.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 900;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.5);
+            background: linear-gradient(135deg, var(--primary-gold), var(--secondary-gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fadeInUp 1s ease-out;
+            line-height: 1.2;
         }
 
         .page-header p {
-            font-size: 1.2rem;
-            max-width: 800px;
-            margin: 0 auto;
-            line-height: 1.8;
-            color: #e0e0e0;
+            font-size: 1.4rem;
+            max-width: 900px;
+            margin: 0 auto 3rem;
+            line-height: 1.9;
+            animation: fadeInUp 1s ease-out 0.4s both;
+            color: rgba(255, 255, 255, 0.9);
+            font-style: italic;
+            color: var(--secondary-gold);
         }
 
         /* Breadcrumb */
         .breadcrumb {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 1rem 2rem;
-            background: transparent;
+            padding: 1.5rem 2rem;
+            background: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
         }
 
         .breadcrumb a {
-            color: #00a8cc;
+            color: var(--primary-gold);
             text-decoration: none;
             transition: color 0.3s;
+            font-weight: 500;
         }
 
         .breadcrumb a:hover {
-            color: #ffd700;
+            color: var(--mining-orange);
+        }
+
+        .breadcrumb span {
+            color: var(--steel-gray);
         }
 
         /* Main Content */
@@ -167,46 +258,54 @@
         }
 
         .section {
-            padding: 80px 0;
+            padding: 100px 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary-gold), var(--mining-orange));
+            color: var(--white);
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
         }
 
         .section-title {
-            font-size: 2.5rem;
-            color: #1a1a2e;
+            font-size: 3rem;
+            color: var(--dark-blue);
             margin-bottom: 1rem;
-            font-weight: 700;
+            font-weight: 900;
             position: relative;
-            padding-bottom: 1rem;
+            display: inline-block;
         }
 
         .section-title::after {
             content: '';
             position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 80px;
-            height: 3px;
-            background: #00a8cc;
-        }
-
-        .section-title.center {
-            text-align: center;
-        }
-
-        .section-title.center::after {
+            bottom: -10px;
             left: 50%;
             transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-gold), var(--mining-orange));
+            border-radius: 2px;
         }
 
         .section-subtitle {
-            color: #666;
-            font-size: 1.1rem;
-            margin-bottom: 3rem;
-            max-width: 800px;
-        }
-
-        .section-subtitle.center {
             text-align: center;
+            color: var(--steel-gray);
+            font-size: 1.2rem;
+            margin-bottom: 3rem;
+            max-width: 700px;
             margin-left: auto;
             margin-right: auto;
         }
@@ -214,126 +313,179 @@
         /* Services Overview */
         .services-overview {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
             margin-bottom: 4rem;
         }
 
         .service-overview-card {
-            background: white;
-            padding: 2.5rem 2rem;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            border-top: 4px solid #00a8cc;
-            transition: all 0.3s;
+            background: var(--white);
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            border: 2px solid transparent;
             text-align: center;
             height: 100%;
             display: flex;
             flex-direction: column;
         }
 
+        .service-overview-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary-gold), var(--mining-orange));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+
+        .service-overview-card:hover::before {
+            transform: scaleX(1);
+        }
+
         .service-overview-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+            border-color: var(--primary-gold);
         }
 
         .service-icon {
             font-size: 3.5rem;
-            color: #00a8cc;
+            color: var(--primary-gold);
             margin-bottom: 1.5rem;
         }
 
         .service-overview-card h3 {
-            color: #1a1a2e;
-            margin-bottom: 1rem;
+            color: var(--dark-blue);
+            margin-bottom: 1.5rem;
             font-size: 1.4rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .service-overview-card p {
-            color: #666;
-            line-height: 1.7;
+            color: var(--steel-gray);
+            line-height: 1.8;
             flex-grow: 1;
         }
 
         .service-link {
             display: inline-block;
             margin-top: 1.5rem;
-            color: #00a8cc;
+            color: var(--primary-gold);
             font-weight: 600;
             text-decoration: none;
             transition: all 0.3s;
         }
 
         .service-link:hover {
-            color: #ffd700;
+            color: var(--mining-orange);
             transform: translateX(5px);
         }
 
         /* Detailed Services Section */
         .detailed-services {
-            background: #f5f5f5;
+            background: linear-gradient(180deg, var(--white) 0%, var(--light-gray) 100%);
         }
 
         .service-detail-card {
-            background: white;
-            border-radius: 10px;
+            background: var(--white);
+            border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
             margin-bottom: 3rem;
-            transition: all 0.3s;
+            transition: all 0.4s ease;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .service-detail-card.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .service-detail-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
         }
 
         .service-detail-header {
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-            color: white;
-            padding: 2rem;
+            background: linear-gradient(135deg, var(--dark-blue), var(--accent-blue));
+            color: var(--white);
+            padding: 3rem;
             display: flex;
             align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-detail-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="60" height="60"><defs><pattern id="hexagons" width="50" height="43.4" patternUnits="userSpaceOnUse" patternTransform="scale(2)"><polygon points="24.8,22 37.3,29.2 37.3,43.7 24.8,50.9 12.3,43.7 12.3,29.2" fill="none" stroke="rgba(212,175,55,0.1)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23hexagons)"/></svg>');
         }
 
         .service-detail-icon {
             font-size: 3rem;
-            margin-right: 1.5rem;
-            color: #00a8cc;
+            margin-right: 2rem;
+            color: var(--primary-gold);
+            position: relative;
+            z-index: 1;
+        }
+
+        .service-detail-title {
+            position: relative;
+            z-index: 1;
         }
 
         .service-detail-title h3 {
-            font-size: 1.8rem;
+            font-size: 2rem;
             margin-bottom: 0.5rem;
-            color: #00a8cc;
+            color: var(--primary-gold);
+            font-weight: 900;
         }
 
         .service-detail-title p {
-            color: #e0e0e0;
-            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.2rem;
+            font-style: italic;
         }
 
         .service-detail-content {
-            padding: 2.5rem;
+            padding: 3rem;
         }
 
         .service-detail-content h4 {
-            color: #1a1a2e;
-            margin-bottom: 1rem;
-            font-size: 1.3rem;
-            border-left: 3px solid #00a8cc;
-            padding-left: 1rem;
+            color: var(--dark-blue);
+            margin-bottom: 1.5rem;
+            font-size: 1.4rem;
+            border-left: 4px solid var(--primary-gold);
+            padding-left: 1.5rem;
+            font-weight: 700;
         }
 
         .service-detail-content p {
             margin-bottom: 1.5rem;
-            line-height: 1.7;
-            color: #555;
+            line-height: 1.8;
+            color: var(--steel-gray);
+            font-size: 1.05rem;
         }
 
         .service-features {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 1.5rem;
             margin-top: 2rem;
         }
@@ -341,25 +493,96 @@
         .service-feature {
             display: flex;
             align-items: flex-start;
+            background: rgba(212, 175, 55, 0.05);
+            padding: 1.5rem;
+            border-radius: 10px;
+            transition: all 0.3s;
+            border-left: 3px solid var(--primary-gold);
+        }
+
+        .service-feature:hover {
+            background: rgba(212, 175, 55, 0.1);
+            transform: translateY(-3px);
         }
 
         .feature-icon {
-            color: #00a8cc;
+            color: var(--primary-gold);
             margin-right: 1rem;
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             margin-top: 0.2rem;
         }
 
         .feature-text h5 {
-            color: #1a1a2e;
-            margin-bottom: 0.3rem;
+            color: var(--dark-blue);
+            margin-bottom: 0.5rem;
             font-size: 1.1rem;
+            font-weight: 700;
         }
 
         .feature-text p {
-            color: #666;
+            color: var(--steel-gray);
             font-size: 0.95rem;
             margin-bottom: 0;
+        }
+
+        /* Equipment Section */
+        .equipment {
+            background: linear-gradient(135deg, var(--dark-blue) 0%, var(--accent-blue) 100%);
+            color: var(--white);
+        }
+
+        .equipment .section-title {
+            color: var(--white);
+        }
+
+        .equipment .section-title::after {
+            background: var(--secondary-gold);
+        }
+
+        .equipment-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .equipment-item {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.3s;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(212, 175, 55, 0.3);
+            padding: 2.5rem 2rem;
+        }
+
+        .equipment-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            border-color: var(--primary-gold);
+        }
+
+        .equipment-icon {
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-gold);
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .equipment-info h3 {
+            color: var(--primary-gold);
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+
+        .equipment-info p {
+            color: #e0e0e0;
+            font-size: 0.9rem;
         }
 
         /* Process Section */
@@ -371,19 +594,26 @@
         }
 
         .process-step {
-            background: white;
-            padding: 2.5rem 2rem;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            background: var(--white);
+            padding: 3rem 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
             text-align: center;
-            transition: all 0.3s;
+            transition: all 0.4s ease;
             position: relative;
-            border-top: 4px solid #00a8cc;
+            border-top: 4px solid var(--primary-gold);
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .process-step.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .process-step:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
         }
 
         .step-number {
@@ -393,45 +623,61 @@
             transform: translateX(-50%);
             width: 40px;
             height: 40px;
-            background: #00a8cc;
-            color: white;
+            background: var(--primary-gold);
+            color: var(--white);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: bold;
             font-size: 1.2rem;
+            box-shadow: 0 3px 10px rgba(212, 175, 55, 0.3);
         }
 
         .step-icon {
             font-size: 3rem;
-            color: #00a8cc;
+            color: var(--primary-gold);
             margin-bottom: 1.5rem;
         }
 
         .process-step h3 {
-            color: #1a1a2e;
+            color: var(--dark-blue);
             margin-bottom: 1rem;
             font-size: 1.3rem;
+            font-weight: 700;
         }
 
         .process-step p {
-            color: #666;
+            color: var(--steel-gray);
             line-height: 1.7;
         }
 
         /* CTA Section */
         .cta-section {
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-            color: white;
+            background: linear-gradient(135deg, var(--dark-blue) 0%, var(--accent-blue) 100%);
+            color: var(--white);
             text-align: center;
-            padding: 80px 0;
+            padding: 100px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><defs><pattern id="circles" width="30" height="30" patternUnits="userSpaceOnUse"><circle cx="15" cy="15" r="2" fill="rgba(212,175,55,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23circles)"/></svg>');
         }
 
         .cta-section h2 {
             font-size: 2.5rem;
             margin-bottom: 1rem;
-            color: #00a8cc;
+            color: var(--primary-gold);
+            position: relative;
+            z-index: 1;
         }
 
         .cta-section p {
@@ -439,80 +685,170 @@
             max-width: 700px;
             margin: 0 auto 2rem;
             color: #e0e0e0;
+            position: relative;
+            z-index: 1;
         }
 
         .cta-button {
             display: inline-block;
-            background: #00a8cc;
-            color: white;
-            padding: 1rem 2.5rem;
+            background: linear-gradient(135deg, var(--primary-gold), var(--mining-orange));
+            color: var(--white);
+            padding: 1.2rem 3rem;
             text-decoration: none;
-            border-radius: 5px;
-            font-weight: bold;
-            transition: all 0.3s;
-            border: 2px solid #00a8cc;
-            font-size: 1.1rem;
+            border-radius: 50px;
+            font-weight: 700;
+            transition: all 0.4s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.95rem;
+            position: relative;
+            overflow: hidden;
+            border: 2px solid transparent;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--mining-orange), var(--primary-gold));
+            transition: left 0.4s ease;
+            z-index: -1;
+        }
+
+        .cta-button:hover::before {
+            left: 0;
         }
 
         .cta-button:hover {
-            background: transparent;
-            color: #00a8cc;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0,168,204,0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.4);
         }
 
         /* Footer */
         footer {
-            background: #0d0d1a;
-            color: white;
-            padding: 3rem 0 1.5rem;
+            background: linear-gradient(135deg, #000000 0%, var(--dark-blue) 100%);
+            color: var(--white);
+            padding: 4rem 2rem 2rem;
+            position: relative;
         }
 
         .footer-content {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 2rem;
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 3rem;
-            margin-bottom: 2rem;
+            margin-bottom: 3rem;
         }
 
         .footer-section h3 {
-            color: #00a8cc;
-            margin-bottom: 1rem;
-            position: relative;
-            padding-bottom: 0.5rem;
-        }
-
-        .footer-section h3::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 40px;
-            height: 2px;
-            background: #ffd700;
+            color: var(--primary-gold);
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .footer-section p, .footer-section a {
-            color: #ccc;
+            color: rgba(255, 255, 255, 0.7);
             text-decoration: none;
             display: block;
-            margin-bottom: 0.5rem;
-            transition: color 0.3s;
+            margin-bottom: 0.8rem;
+            transition: all 0.3s;
         }
 
         .footer-section a:hover {
-            color: #00a8cc;
-            padding-left: 5px;
+            color: var(--primary-gold);
+            padding-left: 8px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover {
+            background: var(--primary-gold);
+            transform: translateY(-3px);
+            padding-left: 0;
         }
 
         .footer-bottom {
             text-align: center;
             padding-top: 2rem;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: #999;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, var(--primary-gold), var(--mining-orange));
+            color: var(--white);
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 1.5rem;
+            box-shadow: 0 5px 20px rgba(212, 175, 55, 0.4);
+            transition: all 0.3s;
+            opacity: 0;
+            visibility: hidden;
+            z-index: 999;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.5);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         /* Responsive Design */
@@ -524,48 +860,80 @@
             
             .service-detail-icon {
                 margin-right: 0;
-                margin-bottom: 1rem;
+                margin-bottom: 1.5rem;
             }
         }
 
         @media (max-width: 768px) {
             .page-header h1 {
-                font-size: 2.5rem;
+                font-size: 2.8rem;
             }
             
             .section-title {
-                font-size: 2rem;
+                font-size: 2.2rem;
             }
             
-            .nav-links {
-                gap: 1rem;
-            }
-            
-            .service-features {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        @media (max-width: 576px) {
             .nav-links {
                 display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: linear-gradient(135deg, rgba(10, 22, 40, 0.98) 0%, rgba(30, 58, 95, 0.98) 100%);
+                flex-direction: column;
+                padding: 1rem 0;
+                gap: 0;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links li {
+                width: 100%;
+                text-align: center;
+            }
+
+            .nav-links a {
+                display: block;
+                padding: 1rem;
+            }
+
+            .mobile-menu-btn {
+                display: block;
             }
             
             .services-overview {
                 grid-template-columns: 1fr;
             }
             
+            .service-features {
+                grid-template-columns: 1fr;
+            }
+            
             .process-steps {
                 grid-template-columns: 1fr;
+            }
+            
+            .equipment-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .service-detail-content {
+                padding: 2rem;
             }
         }
     </style>
 </head>
 <body>
     <!-- Navigation -->
-    <nav>
+    <nav id="navbar">
         <div class="nav-container">
             <a href="index.html" class="logo">EXCELL MINING</a>
+            <button class="mobile-menu-btn">☰</button>
             <ul class="nav-links">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="about.html">About</a></li>
@@ -580,7 +948,7 @@
     <section class="page-header">
         <div class="page-header-content">
             <h1>Our Services</h1>
-            <p>Comprehensive mining and construction solutions tailored to meet your specific operational requirements</p>
+            <p>"Faith meets opportunity meets success."</p>
         </div>
     </section>
 
@@ -592,45 +960,48 @@
     <!-- Services Overview Section -->
     <section class="section">
         <div class="container">
-            <h2 class="section-title center">Comprehensive Service Portfolio</h2>
-            <p class="section-subtitle center">We offer a diverse range of specialised services and products designed to meet the unique needs of the mining and construction industries</p>
+            <div class="section-header">
+                <div class="section-badge">Service Portfolio</div>
+                <h2 class="section-title">Comprehensive Mining Solutions</h2>
+                <p class="section-subtitle">End-to-end engineering services designed to maximize operational efficiency and equipment longevity</p>
+            </div>
             
             <div class="services-overview">
                 <div class="service-overview-card">
-                    <div class="service-icon">⚙️</div>
+                    <div class="service-icon"><i class="fas fa-cogs"></i></div>
                     <h3>GET Maintenance & Equipment Rebuilds</h3>
                     <p>Specialized maintenance of ground-engaging tools to ensure optimal machinery performance, productivity, and longevity.</p>
-                    <a href="#get-maintenance" class="service-link">Learn More →</a>
+                    <a href="#get-maintenance" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
                 </div>
                 <div class="service-overview-card">
-                    <div class="service-icon">🏗️</div>
+                    <div class="service-icon"><i class="fas fa-industry"></i></div>
                     <h3>Steel Structures Supply & Fabrication</h3>
                     <p>Custom design and fabrication of steel mining equipment and structures to exact client specifications.</p>
-                    <a href="#steel-structures" class="service-link">Learn More →</a>
+                    <a href="#steel-structures" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
                 </div>
                 <div class="service-overview-card">
-                    <div class="service-icon">🏭</div>
+                    <div class="service-icon"><i class="fas fa-tools"></i></div>
                     <h3>Civil Maintenance Services</h3>
                     <p>Comprehensive maintenance of infrastructure including buildings, roads, and bridges with full support services.</p>
-                    <a href="#civil-maintenance" class="service-link">Learn More →</a>
+                    <a href="#civil-maintenance" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
                 </div>
                 <div class="service-overview-card">
-                    <div class="service-icon">🚜</div>
+                    <div class="service-icon"><i class="fas fa-crane"></i></div>
                     <h3>Crane Hire Services</h3>
                     <p>Reliable crane solutions for diverse lifting and rigging requirements with truck-mounted and custom options.</p>
-                    <a href="#crane-hire" class="service-link">Learn More →</a>
+                    <a href="#crane-hire" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
                 </div>
                 <div class="service-overview-card">
-                    <div class="service-icon">🔧</div>
+                    <div class="service-icon"><i class="fas fa-wrench"></i></div>
                     <h3>Mechanical Maintenance</h3>
                     <p>Expert maintenance services to restore full operational capacity during shutdown periods efficiently.</p>
-                    <a href="#mechanical-maintenance" class="service-link">Learn More →</a>
+                    <a href="#mechanical-maintenance" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
                 </div>
                 <div class="service-overview-card">
-                    <div class="service-icon">📦</div>
+                    <div class="service-icon"><i class="fas fa-pipe"></i></div>
                     <h3>Pipe Supply & Fabrication</h3>
                     <p>Manufacturing and installation of steel and HDPE pipes tailored to precise project requirements.</p>
-                    <a href="#pipe-supply" class="service-link">Learn More →</a>
+                    <a href="#pipe-supply" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
         </div>
@@ -639,13 +1010,16 @@
     <!-- Detailed Services Section -->
     <section class="section detailed-services">
         <div class="container">
-            <h2 class="section-title center">Our Service Details</h2>
-            <p class="section-subtitle center">In-depth look at our specialized services and capabilities</p>
+            <div class="section-header">
+                <div class="section-badge">Service Details</div>
+                <h2 class="section-title">Our Service Expertise</h2>
+                <p class="section-subtitle">In-depth look at our specialized services and capabilities</p>
+            </div>
             
             <!-- GET Maintenance Service -->
             <div class="service-detail-card" id="get-maintenance">
                 <div class="service-detail-header">
-                    <div class="service-detail-icon">⚙️</div>
+                    <div class="service-detail-icon"><i class="fas fa-cogs"></i></div>
                     <div class="service-detail-title">
                         <h3>GET Maintenance and Equipment Rebuilds</h3>
                         <p>Ensuring machinery operates at optimal efficiency</p>
@@ -657,28 +1031,28 @@
                     <h4>Our GET Maintenance Services Include:</h4>
                     <div class="service-features">
                         <div class="service-feature">
-                            <div class="feature-icon">✓</div>
+                            <div class="feature-icon"><i class="fas fa-check-circle"></i></div>
                             <div class="feature-text">
                                 <h5>Bucket Refurbishment</h5>
                                 <p>Complete overhaul and reinforcement of mining buckets</p>
                             </div>
                         </div>
                         <div class="service-feature">
-                            <div class="feature-icon">✓</div>
+                            <div class="feature-icon"><i class="fas fa-check-circle"></i></div>
                             <div class="feature-text">
                                 <h5>Wear Parts Replacement</h5>
                                 <p>Replacement of teeth, edges, and other wear components</p>
                             </div>
                         </div>
                         <div class="service-feature">
-                            <div class="feature-icon">✓</div>
+                            <div class="feature-icon"><i class="fas fa-check-circle"></i></div>
                             <div class="feature-text">
                                 <h5>Component Rebuilding</h5>
                                 <p>Rebuilding of worn components to extend service life</p>
                             </div>
                         </div>
                         <div class="service-feature">
-                            <div class="feature-icon">✓</div>
+                            <div class="feature-icon"><i class="fas fa-check-circle"></i></div>
                             <div class="feature-text">
                                 <h5>Performance Optimization</h5>
                                 <p>Enhancements to improve digging efficiency and reduce fuel consumption</p>
@@ -691,7 +1065,7 @@
             <!-- Steel Structures Service -->
             <div class="service-detail-card" id="steel-structures">
                 <div class="service-detail-header">
-                    <div class="service-detail-icon">🏗️</div>
+                    <div class="service-detail-icon"><i class="fas fa-industry"></i></div>
                     <div class="service-detail-title">
                         <h3>Steel Structures Supply and Fabrication</h3>
                         <p>Custom solutions for mining operations</p>
@@ -703,28 +1077,28 @@
                     <h4>Our Steel Fabrication Capabilities:</h4>
                     <div class="service-features">
                         <div class="service-feature">
-                            <div class="feature-icon">✓</div>
+                            <div class="feature-icon"><i class="fas fa-check-circle"></i></div>
                             <div class="feature-text">
                                 <h5>Custom Design</h5>
                                 <p>Tailored solutions to meet specific operational requirements</p>
                             </div>
                         </div>
                         <div class="service-feature">
-                            <div class="feature-icon">✓</div>
+                            <div class="feature-icon"><i class="fas fa-check-circle"></i></div>
                             <div class="feature-text">
                                 <h5>Structural Fabrication</h5>
                                 <p>Fabrication of support structures, platforms, and frameworks</p>
                             </div>
                         </div>
                         <div class="service-feature">
-                            <div class="feature-icon">✓</div>
+                            <div class="feature-icon"><i class="fas fa-check-circle"></i></div>
                             <div class="feature-text">
                                 <h5>Mining Equipment</h5>
                                 <p>Specialized equipment designed for mining applications</p>
                             </div>
                         </div>
                         <div class="service-feature">
-                            <div class="feature-icon">✓</div>
+                            <div class="feature-icon"><i class="fas fa-check-circle"></i></div>
                             <div class="feature-text">
                                 <h5>Quality Assurance</h5>
                                 <p>Rigorous quality control throughout the fabrication process</p>
@@ -737,7 +1111,7 @@
             <!-- Civil Maintenance Service -->
             <div class="service-detail-card" id="civil-maintenance">
                 <div class="service-detail-header">
-                    <div class="service-detail-icon">🏭</div>
+                    <div class="service-detail-icon"><i class="fas fa-tools"></i></div>
                     <div class="service-detail-title">
                         <h3>Civil Maintenance Services</h3>
                         <p>Comprehensive infrastructure maintenance</p>
@@ -749,28 +1123,28 @@
                     <h4>Our Civil Maintenance Services:</h4>
                     <div class="service-features">
                         <div class="service-feature">
-                            <div class="feature-icon">✓</div>
+                            <div class="feature-icon"><i class="fas fa-check-circle"></i></div>
                             <div class="feature-text">
                                 <h5>Building Maintenance</h5>
                                 <p>Repair and upkeep of industrial buildings and facilities</p>
                             </div>
                         </div>
                         <div class="service-feature">
-                            <div class="feature-icon">✓</div>
+                            <div class="feature-icon"><i class="fas fa-check-circle"></i></div>
                             <div class="feature-text">
                                 <h5>Road Maintenance</h5>
                                 <p>Maintenance of access roads and haul roads</p>
                             </div>
                         </div>
                         <div class="service-feature">
-                            <div class="feature-icon">✓</div>
+                            <div class="feature-icon"><i class="fas fa-check-circle"></i></div>
                             <div class="feature-text">
                                 <h5>Plumbing & Carpentry</h5>
                                 <p>Specialized trades services for facility maintenance</p>
                             </div>
                         </div>
                         <div class="service-feature">
-                            <div class="feature-icon">✓</div>
+                            <div class="feature-icon"><i class="fas fa-check-circle"></i></div>
                             <div class="feature-text">
                                 <h5>Landscaping & Site Works</h5>
                                 <p>Site maintenance and environmental management</p>
@@ -785,34 +1159,87 @@
         </div>
     </section>
 
-    <!-- Our Process Section -->
+    <!-- Equipment Section -->
+    <section class="section equipment">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge" style="background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1)); color: var(--primary-gold);">Our Equipment</div>
+                <h2 class="section-title">State-of-the-Art Machinery</h2>
+                <p class="section-subtitle" style="color: rgba(255, 255, 255, 0.8);">Advanced tools and equipment to deliver exceptional service</p>
+            </div>
+            
+            <div class="equipment-grid">
+                <div class="equipment-item">
+                    <div class="equipment-icon">
+                        <i class="fas fa-crane"></i>
+                    </div>
+                    <div class="equipment-info">
+                        <h3>Crane Fleet</h3>
+                        <p>Truck-mounted and specialized cranes for all lifting requirements</p>
+                    </div>
+                </div>
+                <div class="equipment-item">
+                    <div class="equipment-icon">
+                        <i class="fas fa-welding"></i>
+                    </div>
+                    <div class="equipment-info">
+                        <h3>Welding Equipment</h3>
+                        <p>Advanced welding systems for precision fabrication</p>
+                    </div>
+                </div>
+                <div class="equipment-item">
+                    <div class="equipment-icon">
+                        <i class="fas fa-toolbox"></i>
+                    </div>
+                    <div class="equipment-info">
+                        <h3>Specialized Tools</h3>
+                        <p>Industry-specific tools for maintenance and repair</p>
+                    </div>
+                </div>
+                <div class="equipment-item">
+                    <div class="equipment-icon">
+                        <i class="fas fa-truck"></i>
+                    </div>
+                    <div class="equipment-info">
+                        <h3>Transport Fleet</h3>
+                        <p>Reliable vehicles for equipment and material transport</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
     <section class="section">
         <div class="container">
-            <h2 class="section-title center">Our Service Process</h2>
-            <p class="section-subtitle center">How we deliver exceptional service from concept to completion</p>
+            <div class="section-header">
+                <div class="section-badge">Our Process</div>
+                <h2 class="section-title">How We Deliver Excellence</h2>
+                <p class="section-subtitle">Our systematic approach to delivering exceptional service from concept to completion</p>
+            </div>
             
             <div class="process-steps">
                 <div class="process-step">
                     <div class="step-number">1</div>
-                    <div class="step-icon">📞</div>
+                    <div class="step-icon"><i class="fas fa-phone-alt"></i></div>
                     <h3>Consultation</h3>
                     <p>We begin with a detailed consultation to understand your specific requirements, challenges, and objectives.</p>
                 </div>
                 <div class="process-step">
                     <div class="step-number">2</div>
-                    <div class="step-icon">📐</div>
+                    <div class="step-icon"><i class="fas fa-drafting-compass"></i></div>
                     <h3>Planning & Design</h3>
                     <p>Our team develops customized solutions with precise planning and design tailored to your operation.</p>
                 </div>
                 <div class="process-step">
                     <div class="step-number">3</div>
-                    <div class="step-icon">⚙️</div>
+                    <div class="step-icon"><i class="fas fa-cogs"></i></div>
                     <h3>Execution</h3>
                     <p>We implement the planned solution with skilled artisans and quality materials, ensuring minimal disruption.</p>
                 </div>
                 <div class="process-step">
                     <div class="step-number">4</div>
-                    <div class="step-icon">✅</div>
+                    <div class="step-icon"><i class="fas fa-clipboard-check"></i></div>
                     <h3>Quality Assurance</h3>
                     <p>Every project undergoes rigorous quality checks to ensure it meets our high standards and your expectations.</p>
                 </div>
@@ -834,20 +1261,23 @@
         <div class="footer-content">
             <div class="footer-section">
                 <h3>Excell Mining</h3>
-                <p>"Faith meets opportunity meets success."</p>
+                <p style="font-style: italic; color: var(--primary-gold);">"Faith meets opportunity meets success."</p>
+                <p style="margin-top: 1.5rem;">Premier mining services provider specializing in engineering excellence and community empowerment.</p>
                 <p style="margin-top: 1rem;">Reg No: 2018/244820/07</p>
             </div>
             <div class="footer-section">
-                <h3>Contact Details</h3>
-                <p>📞 053 050 1124</p>
-                <p><a href="mailto:gladwin.rainers@excellmining.co.za">📧 gladwin.rainers@excellmining.co.za</a></p>
-                <p><a href="mailto:info@excellmining.co.za">📧 info@excellmining.co.za</a></p>
+                <h3>Contact Us</h3>
+                <p><i class="fas fa-phone"></i> 053 050 1124</p>
+                <p><a href="mailto:gladwin.rainers@excellmining.co.za"><i class="fas fa-envelope"></i> gladwin.rainers@excellmining.co.za</a></p>
+                <p><a href="mailto:info@excellmining.co.za"><i class="fas fa-envelope"></i> info@excellmining.co.za</a></p>
+                <p style="margin-top: 1rem;"><a href="http://www.excell-mining.co.za" target="_blank"><i class="fas fa-globe"></i> www.excell-mining.co.za</a></p>
             </div>
             <div class="footer-section">
-                <h3>Location</h3>
-                <p>502 Gemsbok Street</p>
+                <h3>Our Location</h3>
+                <p><i class="fas fa-map-marker-alt"></i> 502 Gemsbok Street</p>
                 <p>Deben, 8460</p>
-                <p>Northern Cape, South Africa</p>
+                <p>Northern Cape</p>
+                <p>South Africa</p>
             </div>
             <div class="footer-section">
                 <h3>Quick Links</h3>
@@ -855,11 +1285,107 @@
                 <p><a href="about.html">About Us</a></p>
                 <p><a href="services.html">Services</a></p>
                 <p><a href="contact.html">Contact</a></p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2025 Excell Mining. All rights reserved.</p>
+            <p>&copy; 2025 Excell Mining (Pty) Ltd. All rights reserved. | Designed for Excellence in Mining Services</p>
         </div>
     </footer>
+
+    <!-- Back to Top Button -->
+    <a href="#" class="back-to-top">
+        <i class="fas fa-chevron-up"></i>
+    </a>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Back to top button
+        const backToTopButton = document.querySelector('.back-to-top');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTopButton.classList.add('visible');
+            } else {
+                backToTopButton.classList.remove('visible');
+            }
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') {
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                    return;
+                }
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    const navHeight = navbar.offsetHeight;
+                    const targetPosition = targetElement.offsetTop - navHeight;
+                    
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    navLinks.classList.remove('active');
+                }
+            });
+        });
+
+        // Scroll animations for service cards and process steps
+        const serviceCards = document.querySelectorAll('.service-detail-card');
+        const processSteps = document.querySelectorAll('.process-step');
+        
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        serviceCards.forEach(card => {
+            observer.observe(card);
+        });
+
+        processSteps.forEach(step => {
+            observer.observe(step);
+        });
+    </script>
 </body>
 </html>
